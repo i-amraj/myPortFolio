@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>📚 Library & Hostel Management System | Raj Soni</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg-dark: #0a0a1a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --neon-cyan: #00f5ff;
+            --neon-purple: #a855f7;
+            --neon-pink: #ec4899;
+            --neon-green: #22c55e;
+            --neon-blue: #3b82f6;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 245, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+            z-index: 0;
+            animation: bgPulse 10s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Floating books animation */
+        .floating-books {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .book {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: floatBook 15s ease-in-out infinite;
+        }
+
+        .book:nth-child(1) {
+            left: 10%;
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        .book:nth-child(2) {
+            left: 25%;
+            top: 60%;
+            animation-delay: -3s;
+        }
+
+        .book:nth-child(3) {
+            left: 45%;
+            top: 30%;
+            animation-delay: -6s;
+        }
+
+        .book:nth-child(4) {
+            left: 65%;
+            top: 70%;
+            animation-delay: -9s;
+        }
+
+        .book:nth-child(5) {
+            left: 85%;
+            top: 40%;
+            animation-delay: -12s;
+        }
+
+        @keyframes floatBook {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            75% {
+                transform: translateY(-20px) rotate(-5deg);
+            }
+        }
+
+        /* Navigation */
+        .nav-back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .nav-back:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--neon-cyan);
+            transform: translateX(-5px);
+        }
+
+        .nav-back svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Page Container */
+        .page-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(168, 85, 247, 0.8);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--neon-cyan), var(--neon-purple));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .tech-pill {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tech-pill:hover {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+        }
+
+        /* Screenshot Gallery */
+        .gallery-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            border-radius: 3px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 245, 255, 0.2);
+            border-color: var(--neon-cyan);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(10, 10, 26, 0.95));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .gallery-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            z-index: 2;
+        }
+
+        .gallery-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .gallery-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .gallery-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 60px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--neon-cyan);
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Modules Section */
+        .modules-section {
+            padding: 60px 0;
+        }
+
+        .modules-card {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0, 245, 255, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .modules-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modules-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .module-pill {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .module-pill:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .module-pill:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .module-pill:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .module-pill:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .module-pill:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .module-pill:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .module-pill:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .module-pill:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .module-pill:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        .module-pill:hover {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            border-color: transparent;
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .page-footer a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .gallery-info {
+                padding: 20px;
+            }
+
+            .gallery-title {
+                font-size: 1.2rem;
+            }
+
+            .modules-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Floating Books -->
+    <div class="floating-books">
+        <span class="book">📚</span>
+        <span class="book">📖</span>
+        <span class="book">📕</span>
+        <span class="book">📗</span>
+        <span class="book">📘</span>
+    </div>
+
+    <!-- Navigation -->
+    <a href="../index.html#projects" class="nav-back">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Portfolio
+    </a>
+
+    <div class="page-container">
+        <!-- Hero Section -->
+        <section class="hero fade-in">
+            <span class="hero-badge">🏆 Featured Project</span>
+            <h1 class="hero-title">📚 Library & Hostel Management</h1>
+            <p class="hero-subtitle">
+                End-to-end library and hostel automation system with member management,
+                book tracking, desk assignments, and comprehensive admin dashboards.
+                Built with stunning 3D animations and modern UI.
+            </p>
+            <div class="tech-stack">
+                <span class="tech-pill">⚡ PHP</span>
+                <span class="tech-pill">🔥 Laravel</span>
+                <span class="tech-pill">🗄️ MySQL</span>
+                <span class="tech-pill">🎨 Bootstrap</span>
+                <span class="tech-pill">✨ 3D CSS</span>
+            </div>
+        </section>
+
+        <!-- Screenshot Gallery -->
+        <section class="gallery-section">
+            <h2 class="section-title fade-in delay-1">🖼️ System Screenshots</h2>
+
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in delay-2">
+                    <img src="../library/Screenshot 2026-02-08 195446.png" alt="Admin Login" />
+                    <div class="gallery-info">
+                        <span class="gallery-number">📸 Screenshot 1</span>
+                        <h3 class="gallery-title">🔐 Admin Login Page</h3>
+                        <p class="gallery-desc">Stunning 3D animated login page with floating geometric shapes and
+                            glassmorphism login card for secure admin access.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in delay-3">
+                    <img src="../library/Screenshot 2026-02-08 195610.png" alt="Admin Dashboard" />
+                    <div class="gallery-info">
+                        <span class="gallery-number">📸 Screenshot 2</span>
+                        <h3 class="gallery-title">📊 Admin Dashboard</h3>
+                        <p class="gallery-desc">Comprehensive dashboard with member management table, quick stats (Total
+                            Collection, Today's Due, Member Days Left), and sidebar navigation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="section-title fade-in delay-1">✨ Key Features</h2>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in delay-2">
+                    <span class="feature-icon">📚</span>
+                    <h3 class="feature-title">Member Management</h3>
+                    <p class="feature-desc">Complete member tracking with joining dates, expiry, programs, and desk
+                        assignments.</p>
+                </div>
+
+                <div class="feature-card fade-in delay-2">
+                    <span class="feature-icon">💰</span>
+                    <h3 class="feature-title">Collection Tracking</h3>
+                    <p class="feature-desc">Monitor total collection, today's collection, and pending dues at a glance.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in delay-3">
+                    <span class="feature-icon">⏰</span>
+                    <h3 class="feature-title">Expiry Alerts</h3>
+                    <p class="feature-desc">Track members with less than 5 days left to prevent missed renewals.</p>
+                </div>
+
+                <div class="feature-card fade-in delay-3">
+                    <span class="feature-icon">🎨</span>
+                    <h3 class="feature-title">3D Animated UI</h3>
+                    <p class="feature-desc">Stunning login page with floating 3D shapes and modern glassmorphism design.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in delay-4">
+                    <span class="feature-icon">📱</span>
+                    <h3 class="feature-title">Responsive Design</h3>
+                    <p class="feature-desc">Works seamlessly on desktop, tablet, and mobile devices.</p>
+                </div>
+
+                <div class="feature-card fade-in delay-4">
+                    <span class="feature-icon">🔒</span>
+                    <h3 class="feature-title">Secure Authentication</h3>
+                    <p class="feature-desc">Role-based access control with encrypted passwords and sessions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modules Section -->
+        <section class="modules-section">
+            <div class="modules-card fade-in delay-2">
+                <h3 class="modules-title">🧩 System Modules</h3>
+                <div class="modules-grid">
+                    <span class="module-pill">🏠 Library Home</span>
+                    <span class="module-pill">📋 Your Program</span>
+                    <span class="module-pill">🪑 Your Desk</span>
+                    <span class="module-pill">👥 Your Batch</span>
+                    <span class="module-pill">➕ Register Member</span>
+                    <span class="module-pill">📦 Archived Members</span>
+                    <span class="module-pill">✅ Attendance</span>
+                    <span class="module-pill">❓ Enquiries</span>
+                    <span class="module-pill">👔 Employee Management</span>
+                </div>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <p>Built with ❤️ by <a href="../index.html">Raj Soni</a> • 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelectorAll('.book').forEach((book, i) => {
+                const speed = 0.5 + (i * 0.1);
+                book.style.transform = `translateY(${scrolled * speed * 0.1}px) rotate(${scrolled * 0.02}deg)`;
+            });
+        });
+    </script>
+</body>
+
+</html>
