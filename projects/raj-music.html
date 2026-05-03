@@ -251,6 +251,29 @@
             box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
         }
 
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+            border: 2px solid transparent;
+            margin-top: 40px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(236, 72, 153, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
         /* Screenshot Gallery */
         .gallery-section {
             padding: 60px 0;
@@ -522,6 +545,13 @@
                 <span class="tech-pill">🔊 Audio Players</span>
                 <span class="tech-pill">🎨 Material Design</span>
             </div>
+
+            <a href="../raj_music/raj_music.apk" download class="download-btn fade-in delay-2">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-right: 8px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                Download App
+            </a>
         </section>
 
         <section class="gallery-section">
