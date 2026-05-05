@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym AI Chatbot — Raj Soni</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared-styles.css">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: #080B14; color: #f5f7ff; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .gradient-text { background: linear-gradient(90deg, #00D4FF, #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+    <nav class="max-w-4xl mx-auto mb-12 flex items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-2 text-sm text-white/50 hover:text-white transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+            Back to Home
+        </a>
+        <div class="h-8 w-8 rounded-full bg-violet/20 flex items-center justify-center text-violet font-bold">◆</div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto">
+        <header class="mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Gym AI <span class="gradient-text">Chatbot</span></h1>
+            <p class="text-xl text-white/60 leading-relaxed">
+                An intelligent customer support system powered by Gemini AI, featuring an automated ticketing system for gym member resolution.
+            </p>
+        </header>
+
+        <section class="grid md:grid-cols-3 gap-8 mb-16">
+            <div class="md:col-span-2 space-y-8">
+                <div class="glass rounded-3xl p-8">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <span class="text-violet">✦</span> Project Overview
+                    </h2>
+                    <p class="text-white/70 leading-relaxed mb-6">
+                        Designed to handle high volumes of member enquiries for gym management systems. The AI understands natural language, provides instant answers to common FAQs, and escalates complex issues by creating tickets.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+                            <h3 class="text-neon text-xs font-bold uppercase mb-2">AI Engine</h3>
+                            <p class="text-sm">Powered by Gemini Pro for contextual understanding and human-like responses.</p>
+                        </div>
+                        <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+                            <h3 class="text-violet text-xs font-bold uppercase mb-2">Ticketing</h3>
+                            <p class="text-sm">Integrated ticketing flow that records member data and issue history for admins.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-3xl p-8">
+                    <h2 class="text-2xl font-bold mb-6">Key Features</h2>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <span class="text-violet">✔</span>
+                            <div>
+                                <h4 class="font-bold">24/7 Support Automation</h4>
+                                <p class="text-sm text-white/50">Reduces support workload by answering 80% of routine member questions.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-violet">✔</span>
+                            <div>
+                                <h4 class="font-bold">Automated Ticket Creation</h4>
+                                <p class="text-sm text-white/50">Automatically generates a support ticket when the AI cannot resolve the issue.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-violet">✔</span>
+                            <div>
+                                <h4 class="font-bold">Contextual Awareness</h4>
+                                <p class="text-sm text-white/50">The AI maintains conversation history to provide relevant and specific assistance.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-violet">✔</span>
+                            <div>
+                                <h4 class="font-bold">Member Dashboard Sync</h4>
+                                <p class="text-sm text-white/50">Can be integrated with gym databases to provide membership status and fee info.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="glass rounded-3xl p-6 border-l-4 border-violet">
+                    <h3 class="text-sm font-bold uppercase text-white/40 mb-4 tracking-widest">Tech Stack</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs">Gemini Pro API</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs">PHP Laravel</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs">MySQL</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs">Vue.js</span>
+                    </div>
+                </div>
+
+                <div class="glass rounded-3xl p-6">
+                    <h3 class="text-sm font-bold uppercase text-white/40 mb-4 tracking-widest">Role</h3>
+                    <p class="text-sm font-bold">AI Developer</p>
+                    <p class="text-xs text-white/50 mt-1">System Designer</p>
+                </div>
+
+                <div class="glass rounded-3xl p-6">
+                    <h3 class="text-sm font-bold uppercase text-white/40 mb-4 tracking-widest">Platform</h3>
+                    <p class="text-sm font-bold">Web & Mobile Web</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="max-w-4xl mx-auto py-12 border-t border-white/5 text-center text-white/30 text-sm">
+        Built with ❤️ by Raj Soni
+    </footer>
+</body>
+</html>

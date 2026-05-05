@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume — Raj Soni</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; color: #1a1a1a; background: #f9fafb; }
+        @media print {
+            body { background: white; }
+            .no-print { display: none; }
+            .print-only { display: block; }
+            .page-break { page-break-before: always; }
+            @page { margin: 1cm; }
+        }
+        .resume-container { max-width: 850px; margin: 0 auto; background: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        @media print { .resume-container { box-shadow: none; max-width: 100%; } }
+        h1, h2, h3 { color: #000; }
+        .section-title { border-bottom: 2px solid #00D4FF; padding-bottom: 4px; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem; color: #00D4FF; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="no-print fixed top-4 right-4 z-50">
+        <button onclick="window.print()" class="bg-black text-white px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-800 transition flex items-center gap-2">
+            <span>📄 Save as PDF / Print</span>
+        </button>
+    </div>
+
+    <div class="resume-container p-8 md:p-12 min-h-screen">
+        <!-- Header -->
+        <header class="flex justify-between items-start border-b-2 border-gray-100 pb-8 mb-8">
+            <div>
+                <h1 class="text-4xl font-bold tracking-tight mb-2">Raj Soni</h1>
+                <p class="text-lg text-gray-500 font-medium mb-4">Software Developer / AI Agent Developer</p>
+                <div class="flex flex-wrap gap-y-2 gap-x-6 text-sm text-gray-600">
+                    <span class="flex items-center gap-2">📧 iamrajsoni1@gmail.com</span>
+                    <span class="flex items-center gap-2">🌐 <a href="https://iamraj.me" class="text-blue-600 hover:underline">iamraj.me</a></span>
+                    <span class="flex items-center gap-2">📍 Kanpur, UP</span>
+                </div>
+            </div>
+            <div class="text-center">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://iamraj.me" alt="QR Code Portfolio" class="w-24 h-24 border p-1 rounded-lg mb-1">
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Scan for Portfolio</p>
+            </div>
+        </header>
+
+        <!-- Summary -->
+        <section class="mb-8">
+            <h2 class="section-title">Professional Summary</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Modern Software Developer and **Vibe Coder** with **<span id="resume-exp">...</span> of professional experience**. Expert in AI-augmented development using state-of-the-art agents like **Antigravity** and **Claude CLI**. Awarded **3rd Prize in Hackathon** for AI healthcare solutions. Proven expertise in building **Multi-Tenant SaaS platforms** and high-concurrency automation tools through a rapid iterative "Vibe Coding" workflow.
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Left Column: Experience & Projects -->
+            <div class="md:col-span-2">
+                <!-- Experience -->
+                <section class="mb-8">
+                    <h2 class="section-title">Experience</h2>
+                    <div class="mb-6">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Fireflies Infotech Pvt Ltd</h3>
+                            <span class="text-sm font-semibold text-gray-500">Oct 2024 – Present (<span id="resume-duration">...</span>)</span>
+                        </div>
+                        <p class="text-sm text-blue-600 font-bold mb-3 uppercase tracking-wider">Full‑Stack Developer / AI Lead</p>
+                        <ul class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-700">
+                            <li>Implemented a cutting-edge **Vibe Coding** workflow, leveraging AI agents (Antigravity/Claude) to accelerate development of complex ERP and SaaS systems by 3x.</li>
+                            <li>Architected a **Multi-Tenant WhatsApp SaaS** managing 100+ gyms with isolated data security and automated ticketing.</li>
+                            <li>Won **3rd Prize in Hackathon** for building a self-learning Health AI Assistant using Gemini 2.5 Flash.</li>
+                            <li>Developed high-concurrency **Uptime Monitoring Tools** with real-time latency visualization and automated alerting.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Key Projects -->
+                <section class="mb-8">
+                    <h2 class="section-title">Core Management & AI Systems</h2>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-bold text-sm">Desk Library Manager (ERP)</h3>
+                        <p class="text-xs text-gray-600 italic mb-1">Laravel, WhatsApp API, Biometric Bridge</p>
+                        <p class="text-sm text-gray-700">Comprehensive management system for co-working libraries. Automates **biometric seat allocation**, automated billing via WhatsApp, and OTP-based identity verification.</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h3 class="font-bold text-sm">Body Bannao WhatsApp SaaS (Enterprise)</h3>
+                        <p class="text-xs text-gray-600 italic mb-1">PHP, WebSockets, Multi-Tenant Engine</p>
+                        <p class="text-sm text-gray-700">Architected a scalable SaaS handling **100+ business owners** on a single WhatsApp number. Built via **AI-augmented development** (Antigravity) for rapid prototyping and deployment.</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h3 class="font-bold text-sm">Dual-Engine Lead Generator (Automation)</h3>
+                        <p class="text-xs text-gray-600 italic mb-1">Python Playwright, Node.js, Excel Logic</p>
+                        <p class="text-sm text-gray-700">Sophisticated browser automation tool using a hybrid engine. Optimized through **Vibe Coding** techniques to handle complex scrolling and data extraction patterns.</p>
+                    </div>
+
+                    <!-- Other Mentions -->
+                    <div class="mt-6 pt-4 border-t border-gray-100">
+                        <h4 class="text-xs font-bold uppercase text-gray-400 mb-3">Other Noteworthy Projects</h4>
+                        <div class="grid grid-cols-2 gap-4 text-xs text-gray-700">
+                            <p>✦ **Health Advisor AI**: Hackathon Winner (Gemini AI)</p>
+                            <p>✦ **Website Ping Checker**: Real-time Uptime Monitoring</p>
+                            <p>✦ **Raj Music App**: Flutter Streaming (25+ DAU)</p>
+                            <p>✦ **Invoice Generator**: GST Utility with GitHub Auto-Sync</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Skills & Education -->
+            <div>
+                <!-- Skills -->
+                <section class="mb-8">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-xs font-bold uppercase text-neon mb-2">Modern Workflow</p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-blue-50 text-blue-700 px-2 py-1 rounded font-bold border border-blue-100">Vibe Coding</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">Antigravity</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">Claude CLI</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">Prompt Engineering</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold uppercase text-gray-400 mb-2">Languages</p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-gray-100 px-2 py-1 rounded">PHP</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">Python</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">JavaScript</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">HTML5/CSS3</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">Dart</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold uppercase text-gray-400 mb-2">Frameworks & AI</p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-gray-100 px-2 py-1 rounded font-bold text-blue-600">Gemini 2.5 Flash</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">Laravel</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">FastAPI/Flask</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">Playwright</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">Flutter</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Education -->
+                <section class="mb-8">
+                    <h2 class="section-title">Education</h2>
+                    <div class="mb-4">
+                        <h3 class="font-bold text-sm">Master of Computer Applications</h3>
+                        <p class="text-xs text-gray-600 italic">Jagran College, Kanpur</p>
+                        <p class="text-xs text-blue-600 font-bold">2025 – 2027 (Expected)</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm">Bachelor of Arts</h3>
+                        <p class="text-xs text-gray-600 italic">Graduated</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <footer class="mt-8 pt-8 border-t border-gray-100 text-center">
+            <p class="text-[10px] text-gray-400 uppercase tracking-widest font-medium">Verified Resume — Generated via iamraj.me</p>
+        </footer>
+    </div>
+
+    <script>
+        function updateResumeExperience() {
+            const startDate = new Date(2024, 9, 23); // Oct 23, 2024
+            const today = new Date();
+            let diffYears = today.getFullYear() - startDate.getFullYear();
+            let diffMonths = today.getMonth() - startDate.getMonth();
+            let diffDays = today.getDate() - startDate.getDate();
+            
+            if (diffDays < 0) {
+                diffMonths--;
+            }
+            if (diffMonths < 0) {
+                diffYears--;
+                diffMonths += 12;
+            }
+            const yearStr = diffYears > 0 ? `${diffYears} Yr${diffYears > 1 ? 's' : ''}` : "";
+            const monthStr = diffMonths > 0 ? `${diffMonths} Mo${diffMonths > 1 ? 's' : ''}` : "";
+            const fullExp = `${yearStr} ${monthStr}`.trim() || "0 Mos";
+
+            const expStr = fullExp.toLowerCase();
+            const durationStr = fullExp;
+
+            if(document.getElementById('resume-exp')) document.getElementById('resume-exp').innerText = expStr;
+            if(document.getElementById('resume-duration')) document.getElementById('resume-duration').innerText = durationStr;
+        }
+        updateResumeExperience();
+    </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🍴 Restaurant Management System | Raj Soni</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: "#080B14",
+                        neon: "#00D4FF",
+                        violet: "#8B5CF6",
+                        gold: "#F59E0B"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #080B14;
+            color: #f5f7ff;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+        .diamond-border {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .diamond-border::after {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            padding: 1px;
+            border-radius: inherit;
+            background: conic-gradient(from var(--angle), #00D4FF, #8B5CF6, #F59E0B, #00D4FF);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: rotate-angle 4s linear infinite;
+            pointer-events: none;
+        }
+        @property --angle {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: false;
+        }
+        @keyframes rotate-angle { to { --angle: 360deg; } }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #00D4FF;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="selection:bg-neon selection:text-ink">
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass">
+        <a href="../index.html#projects" class="flex items-center gap-2 text-white/70 hover:text-neon transition group">
+            <svg class="w-5 h-5 group-hover:-translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            Back to Portfolio
+        </a>
+        <div class="text-xs uppercase tracking-widest text-white/30 font-bold">Enterprise Project • Restaurant Management</div>
+    </nav>
+
+    <main class="pt-24 md:pt-32 pb-20 px-4 md:px-6 max-w-6xl mx-auto overflow-hidden">
+        <!-- Hero Section -->
+        <section class="text-center mb-16 md:mb-20">
+            <div class="inline-block px-4 py-1 rounded-full border border-neon/30 bg-neon/5 text-neon text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6">
+                Enterprise Management Architecture
+            </div>
+            <h1 class="text-4xl md:text-7xl font-bold mb-6 tracking-tight bg-gradient-to-r from-white via-neon to-violet bg-clip-text text-transparent break-words">
+                Restaurant Management
+            </h1>
+            <p class="text-lg md:text-xl text-white/60 max-w-3xl mx-auto leading-relaxed mb-10">
+                A complete hospitality management ecosystem featuring live kitchen tracking, dynamic menu pricing, and advanced inventory logistics.
+            </p>
+            <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+                <span class="px-3 py-1 md:px-4 md:py-1.5 rounded-xl glass text-xs md:text-sm font-medium border-white/5">PHP 8.x</span>
+                <span class="px-3 py-1 md:px-4 md:py-1.5 rounded-xl glass text-xs md:text-sm font-medium border-white/5">Laravel Framework</span>
+                <span class="px-3 py-1 md:px-4 md:py-1.5 rounded-xl glass text-xs md:text-sm font-medium border-white/5">Tailwind CSS (CDN)</span>
+                <span class="px-3 py-1 md:px-4 md:py-1.5 rounded-xl glass text-xs md:text-sm font-medium border-white/5">MySQL Database</span>
+                <span class="px-3 py-1 md:px-4 md:py-1.5 rounded-xl glass text-xs md:text-sm font-medium border-white/5">QR Menu System</span>
+            </div>
+        </section>
+
+        <!-- Company Policy Notice -->
+        <div class="mb-16 md:mb-20 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-gold/30 bg-gold/5 flex flex-col md:flex-row items-center md:items-start gap-4">
+            <div class="text-gold text-2xl">⚠️</div>
+            <div class="text-xs md:text-sm text-gold/80 leading-relaxed text-center md:text-left">
+                <strong>Confidential Enterprise Project:</strong> This software is a proprietary solution for a corporate client. Per NDA guidelines, I can only showcase the custom login portal. Feature details below describe the functional scope implemented.
+            </div>
+        </div>
+
+        <!-- Login Preview -->
+        <section class="mb-24 md:mb-32">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 flex items-center gap-4">
+                <span class="h-px flex-1 bg-white/10"></span>
+                <span class="whitespace-nowrap">Secure Entry Portal</span>
+                <span class="h-px flex-1 bg-white/10"></span>
+            </h2>
+            <div class="diamond-border rounded-2xl md:rounded-[2rem] overflow-hidden group">
+                <img src="../restrorent/Screenshot 2026-05-04 091016.png" alt="Restaurant Admin Login" class="w-full opacity-80 group-hover:opacity-100 transition duration-700" />
+            </div>
+        </section>
+
+        <!-- Feature Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-24 md:mb-32">
+            <!-- POS & Kitchen -->
+            <div class="glass p-6 md:p-8 rounded-2xl md:rounded-3xl feature-card transition duration-300">
+                <div class="text-neon text-3xl mb-4">🍽️</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3">POS & Live Kitchen</h3>
+                <p class="text-xs md:text-sm text-white/50 leading-relaxed">High-speed Point of Sale with real-time Kitchen Display System (KDS) for live order tracking.</p>
+            </div>
+            
+            <!-- Dynamic Menu -->
+            <div class="glass p-6 md:p-8 rounded-2xl md:rounded-3xl feature-card transition duration-300">
+                <div class="text-neon text-3xl mb-4">🍱</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3">Smart Menu Engine</h3>
+                <p class="text-xs md:text-sm text-white/50 leading-relaxed">Variant pricing (Half/Full), weight-based costs, and automated QR-menu generation.</p>
+            </div>
+
+            <!-- Inventory Logic -->
+            <div class="glass p-6 md:p-8 rounded-2xl md:rounded-3xl feature-card transition duration-300">
+                <div class="text-neon text-3xl mb-4">📦</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3">Logistics & Stock</h3>
+                <p class="text-xs md:text-sm text-white/50 leading-relaxed">Category-wise material tracking, vendor stock entry, wastage logs, and low-stock alerts.</p>
+            </div>
+
+            <!-- Booking System -->
+            <div class="glass p-6 md:p-8 rounded-2xl md:rounded-3xl feature-card transition duration-300">
+                <div class="text-neon text-3xl mb-4">📅</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3">Area & Table Ops</h3>
+                <p class="text-xs md:text-sm text-white/50 leading-relaxed">Visual table management, area booking, and customer loyalty point tracking.</p>
+            </div>
+
+            <!-- Staff & RBAC -->
+            <div class="glass p-6 md:p-8 rounded-2xl md:rounded-3xl feature-card transition duration-300">
+                <div class="text-neon text-3xl mb-4">👔</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3">HRM & RBAC</h3>
+                <p class="text-xs md:text-sm text-white/50 leading-relaxed">Shift management, salary processing, and Role-Based Access for multi-branch staff.</p>
+            </div>
+
+            <!-- Multi-Branch -->
+            <div class="glass p-6 md:p-8 rounded-2xl md:rounded-3xl feature-card transition duration-300">
+                <div class="text-neon text-3xl mb-4">🏢</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3">Multi-Branch Hub</h3>
+                <p class="text-xs md:text-sm text-white/50 leading-relaxed">Centralized control panel to manage multiple locations, inventory transfers, and unified reporting.</p>
+            </div>
+        </section>
+
+        <!-- Functional Deep Dive -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-20">
+            <div class="glass p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] border-white/5">
+                <h4 class="text-neon font-bold uppercase tracking-widest text-[10px] md:text-xs mb-6 md:mb-8">Billing & Delivery</h4>
+                <ul class="space-y-4">
+                    <li class="flex gap-4 text-xs md:text-sm text-white/70">
+                        <span class="text-neon">✦</span>
+                        <span>**Versatile Invoices**: Support for Thermal, A4, and A5 printing formats.</span>
+                    </li>
+                    <li class="flex gap-4 text-xs md:text-sm text-white/70">
+                        <span class="text-neon">✦</span>
+                        <span>**Delivery Sync**: Native integration for Zomato and Swiggy order management.</span>
+                    </li>
+                    <li class="flex gap-4 text-xs md:text-sm text-white/70">
+                        <span class="text-neon">✦</span>
+                        <span>**Coupon Engine**: Advanced discount and loyalty point redemption system.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="glass p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] border-white/5">
+                <h4 class="text-neon font-bold uppercase tracking-widest text-[10px] md:text-xs mb-6 md:mb-8">Advanced Analytics</h4>
+                <ul class="space-y-4">
+                    <li class="flex gap-4 text-xs md:text-sm text-white/70">
+                        <span class="text-neon">✦</span>
+                        <span>**Weekly Reports**: Profit/Loss analysis and product performance tracking.</span>
+                    </li>
+                    <li class="flex gap-4 text-xs md:text-sm text-white/70">
+                        <span class="text-neon">✦</span>
+                        <span>**Wastage Logs**: Detailed tracking of stock expiration and kitchen wastage.</span>
+                    </li>
+                    <li class="flex gap-4 text-xs md:text-sm text-white/70">
+                        <span class="text-neon">✦</span>
+                        <span>**Gst Slabs**: Flexible GST calculation for different menu categories.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 border-t border-white/5 text-center text-white/30 text-sm">
+        Built with ❤️ by Raj Soni • 2026
+    </footer>
+
+    <!-- Image Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-10 cursor-zoom-out" onclick="this.classList.add('hidden')">
+        <div class="relative max-w-7xl w-full h-full flex items-center justify-center">
+            <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl transition-transform duration-300" onclick="event.stopPropagation()">
+            <button class="absolute top-0 right-0 m-4 text-white/50 hover:text-white transition" onclick="document.getElementById('lightbox').classList.add('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        document.querySelectorAll('img').forEach(img => {
+            img.classList.add('cursor-zoom-in');
+            img.onclick = () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.remove('hidden');
+            };
+        });
+    </script>
+</body>
+</html>
