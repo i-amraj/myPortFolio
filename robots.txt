@@ -1,8 +1,8 @@
 # robots.txt — Raj Soni Portfolio
-# https://i-amraj.github.io/myPortFolio/
+# https://iamraj.me/
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://i-amraj.github.io/myPortFolio/sitemap.xml
+Sitemap: https://iamraj.me/sitemap.xml
