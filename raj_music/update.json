@@ -1,6 +1,6 @@
 {
-  "versionCode": 26,
-  "versionName": "0.5.10",
+  "versionCode": 27,
+  "versionName": "0.5.11",
   "updateUrl": "https://iamraj.me/projects/raj-music.html",
-  "releaseNotes": "Aapke naye update ki details (jaise bug fixes, naye features) yahan aayengi."
+  "releaseNotes": "Fixed YouTube stream playback errors and added automatic update alert dialog."
 }
