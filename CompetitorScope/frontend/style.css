@@ -1,0 +1,101 @@
+/* Import Space Grotesk, Inter, and JetBrains Mono from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* Mentor Node: Design system variables established here to match Design.md exactly. */
+:root {
+  --bg-color: #0B1120;
+  --surface-color: #111827;
+  --border-color: #1F2937;
+  --primary-accent: #06B6D4;
+  --secondary-accent: #8B5CF6;
+  --success-color: #10B981;
+  --warning-color: #F59E0B;
+  --error-color: #EF4444;
+  --text-primary: #F9FAFB;
+  --text-secondary: #9CA3AF;
+  
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.mono-font {
+  font-family: var(--font-mono);
+}
+
+/* Custom glow effects for premium look */
+.glow-primary:hover {
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+  border-color: var(--primary-accent);
+  transition: all 0.3s ease;
+}
+
+/* Skeleton Loading Animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .4;
+  }
+}
+
+.skeleton {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background-color: #1F2937;
+  border-radius: 0.375rem;
+}
+
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--bg-color);
+}
+
+/* Accordion sliding details panel */
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  opacity: 0;
+}
+
+.accordion-panel.open {
+  max-height: 800px;
+  opacity: 1;
+}
+
+/* Smooth fade-in for dynamic cards */
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

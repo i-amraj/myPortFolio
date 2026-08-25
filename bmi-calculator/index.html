@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitalify - Premium BMI & Body Fat Calculator</title>
+    <meta name="description" content="Calculate your BMI, Body Fat %, BMR, TDEE, Ideal Body Weight, and Water Intake with 100% accuracy. Get personalized health tips.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="dark-mode">
+    <div class="background-decorations">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                </div>
+                <h1>Vitalify</h1>
+                <span class="badge">Health Engine v1.2</span>
+            </div>
+            
+            <div class="theme-switch-wrapper">
+                <button id="settingsBtn" aria-label="Open Settings" class="theme-toggle-btn" style="margin-right: 8px;">
+                    <!-- Gear Icon -->
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                </button>
+                <button id="themeToggle" aria-label="Toggle Theme" class="theme-toggle-btn">
+                    <!-- Sun Icon -->
+                    <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon Icon -->
+                    <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <main class="main-layout">
+            
+            <!-- Column 1: Inputs -->
+            <section class="card inputs-section">
+                <h2 class="section-title">Configure Metrics</h2>
+                
+                <form id="calculatorForm" novalidate>
+                    <!-- Gender Selector -->
+                    <div class="form-group">
+                        <label class="input-label">Gender</label>
+                        <div class="gender-selector-grid">
+                            <label class="gender-card active" for="genderMale">
+                                <input type="radio" name="gender" id="genderMale" value="male" checked class="hidden-radio">
+                                <div class="gender-content">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="10" cy="14" r="5"></circle>
+                                        <line x1="19" y1="5" x2="14" y2="10"></line>
+                                        <polyline points="14 5 19 5 19 10"></polyline>
+                                    </svg>
+                                    <span>Male</span>
+                                </div>
+                            </label>
+                            <label class="gender-card" for="genderFemale">
+                                <input type="radio" name="gender" id="genderFemale" value="female" class="hidden-radio">
+                                <div class="gender-content">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="9" r="4"></circle>
+                                        <line x1="12" y1="13" x2="12" y2="21"></line>
+                                        <line x1="9" y1="18" x2="15" y2="18"></line>
+                                    </svg>
+                                    <span>Female</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Unit Switcher -->
+                    <div class="form-group">
+                        <div class="unit-toggle-container">
+                            <span class="input-label">Unit System</span>
+                            <div class="unit-toggle">
+                                <input type="radio" name="unitSystem" id="unitMetric" value="metric" checked class="hidden-radio">
+                                <label for="unitMetric" class="unit-label-btn active">Metric (kg, cm)</label>
+                                
+                                <input type="radio" name="unitSystem" id="unitImperial" value="imperial" class="hidden-radio">
+                                <label for="unitImperial" class="unit-label-btn">Imperial (lbs, ft/in)</label>
+                                <div class="unit-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Age Input -->
+                    <div class="form-group">
+                        <label for="ageInput" class="input-label">Age</label>
+                        <div class="input-with-label">
+                            <input type="number" id="ageInput" min="15" max="80" step="1" value="25" class="number-input">
+                            <span class="input-suffix">yrs</span>
+                        </div>
+                    </div>
+
+                    <!-- Height Input -->
+                    <div class="form-group" id="heightMetricGroup">
+                        <label for="heightCmInput" class="input-label">Height</label>
+                        <div class="input-with-label">
+                            <input type="number" id="heightCmInput" min="100" max="220" step="0.1" value="175" class="number-input">
+                            <span class="input-suffix">cm</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group hidden" id="heightImperialGroup">
+                        <label class="input-label">Height</label>
+                        <div class="dual-inputs">
+                            <div class="input-with-label">
+                                <input type="number" id="heightFtInput" min="3" max="8" step="1" value="5" class="number-input">
+                                <span class="input-suffix">ft</span>
+                            </div>
+                            <div class="input-with-label">
+                                <input type="number" id="heightInInput" min="0" max="11.9" step="0.1" value="9" class="number-input">
+                                <span class="input-suffix">in</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weight Input -->
+                    <div class="form-group" id="weightMetricGroup">
+                        <label for="weightKgInput" class="input-label">Weight</label>
+                        <div class="input-with-label">
+                            <input type="number" id="weightKgInput" min="30" max="150" step="0.1" value="70" class="number-input">
+                            <span class="input-suffix">kg</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group hidden" id="weightImperialGroup">
+                        <label for="weightLbsInput" class="input-label">Weight</label>
+                        <div class="input-with-label">
+                            <input type="number" id="weightLbsInput" min="60" max="330" step="0.1" value="154" class="number-input">
+                            <span class="input-suffix">lbs</span>
+                        </div>
+                    </div>
+
+                    <!-- Activity Level -->
+                    <div class="form-group">
+                        <label for="activityInput" class="input-label">Activity Level</label>
+                        <div class="custom-select-wrapper">
+                            <select id="activityInput" class="custom-select">
+                                <option value="sedentary">Sedentary (Little/no exercise)</option>
+                                <option value="light" selected>Lightly Active (Exercise 1-3 days/wk)</option>
+                                <option value="moderate">Moderately Active (Exercise 3-5 days/wk)</option>
+                                <option value="active">Very Active (Hard exercise 6-7 days/wk)</option>
+                                <option value="extreme">Extra Active (Hard exercise + physical job)</option>
+                            </select>
+                            <div class="select-arrow">
+                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Body Fat Circumference Toggle Switch -->
+                    <div class="form-group bodyfat-toggle-container">
+                        <label class="toggle-switch-wrapper">
+                            <input type="checkbox" id="bodyfatToggle" class="toggle-checkbox">
+                            <span class="toggle-slider"></span>
+                            <span class="toggle-label-text">Enable Precise Body Fat Tape Measurements</span>
+                        </label>
+                    </div>
+
+                    <!-- Collapsible Circumference Inputs Panel -->
+                    <div id="bodyfatInputsPanel" class="bodyfat-panel hidden">
+                        <h3 class="panel-subtitle">Circumference Inputs (U.S. Navy Method)</h3>
+                        
+                        <!-- Neck Input -->
+                        <div class="form-group">
+                            <label for="neckInput" class="input-label">Neck Circumference</label>
+                            <div class="input-with-label">
+                                <input type="number" id="neckInput" min="20" max="60" step="0.1" value="38" class="number-input">
+                                <span class="input-suffix" id="neckUnit">cm</span>
+                            </div>
+                        </div>
+
+                        <!-- Waist Input -->
+                        <div class="form-group">
+                            <label for="waistInput" class="input-label">Waist Circumference</label>
+                            <div class="input-with-label">
+                                <input type="number" id="waistInput" min="50" max="160" step="0.1" value="85" class="number-input">
+                                <span class="input-suffix" id="waistUnit">cm</span>
+                            </div>
+                        </div>
+
+                        <!-- Hip Input (Conditional: Female only) -->
+                        <div class="form-group hidden" id="hipInputGroup">
+                            <label for="hipInput" class="input-label">Hip Circumference</label>
+                            <div class="input-with-label">
+                                <input type="number" id="hipInput" min="60" max="170" step="0.1" value="95" class="number-input">
+                                <span class="input-suffix" id="hipUnit">cm</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="calculate-btn">
+                        <span>Calculate Health Profile</span>
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Column 2: Dashboard/Results -->
+            <section class="results-section">
+                <!-- Welcome/Placeholder State -->
+                <div id="resultsPlaceholder" class="card placeholder-card">
+                    <div class="placeholder-icon">
+                        <svg viewBox="0 0 24 24" width="60" height="60" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <h3>Your Medical Dashboard</h3>
+                    <p>Enter your physiological parameters on the left and click calculate to view a mathematically precise health profile.</p>
+                </div>
+
+                <!-- Active Results Container -->
+                <div id="resultsContent" class="hidden">
+                    
+                    <!-- Primary Gauge Card -->
+                    <div class="card main-result-card">
+                        <div class="bmi-header">
+                            <div>
+                                <span class="card-subtitle">Your Body Mass Index</span>
+                                <h3 id="bmiCategoryText" class="bmi-category">Normal Weight</h3>
+                            </div>
+                            <div class="bmi-display">
+                                <span id="bmiScoreText">22.8</span>
+                            </div>
+                        </div>
+
+                        <!-- Gauge/Slider Scale -->
+                        <div class="gauge-container">
+                            <div class="gauge-bar">
+                                <div class="gauge-segment underweight"></div>
+                                <div class="gauge-segment normal"></div>
+                                <div class="gauge-segment overweight"></div>
+                                <div class="gauge-segment obese"></div>
+                                <div id="gaugePointer" class="gauge-pointer"></div>
+                            </div>
+                            <div class="gauge-labels">
+                                <span>15.0</span>
+                                <span>18.5</span>
+                                <span>25.0</span>
+                                <span>30.0</span>
+                                <span>40.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Body Composition Card -->
+                    <div class="card bodyfat-result-card">
+                        <div class="bodyfat-header">
+                            <div>
+                                <span class="card-subtitle">Body Composition</span>
+                                <h3 id="bodyfatCategoryText" class="bodyfat-category">Fitness Range</h3>
+                            </div>
+                            <div class="bodyfat-badge-wrapper">
+                                <span id="bodyfatMethodBadge" class="method-badge">YMCA Estimated</span>
+                            </div>
+                        </div>
+
+                        <!-- Grid representing fat vs lean mass percentage -->
+                        <div class="bodyfat-bar-container">
+                            <div class="bodyfat-bar">
+                                <div id="fatMassBar" class="fat-bar" style="width: 18%;"></div>
+                                <div id="leanMassBar" class="lean-bar" style="width: 82%;"></div>
+                            </div>
+                            <div class="bodyfat-bar-labels">
+                                <span class="label-fat">Fat Mass: <span id="bodyfatPercentText">18.0</span>%</span>
+                                <span class="label-lean">Lean Mass: <span id="leanPercentText">82.0</span>%</span>
+                            </div>
+                        </div>
+
+                        <!-- Breakdown numbers -->
+                        <div class="mass-breakdown-grid">
+                            <div class="mass-item">
+                                <span class="mass-label">Total Fat Weight</span>
+                                <span class="mass-val"><span id="fatMassVal">12.6</span> <span class="mass-unit" id="fatMassUnit">kg</span></span>
+                            </div>
+                            <div class="mass-item">
+                                <span class="mass-label">Total Lean Weight</span>
+                                <span class="mass-val"><span id="leanMassVal">57.4</span> <span class="mass-unit" id="leanMassUnit">kg</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Comparative Breakdown of Methods -->
+                        <div class="method-breakdown-box">
+                            <div class="breakdown-row">
+                                <span class="method-name">U.S. Navy (Tape-based)</span>
+                                <span class="method-val" id="bfNavyVal">--</span>
+                            </div>
+                            <div class="breakdown-row">
+                                <span class="method-name">YMCA (Waist & Weight)</span>
+                                <span class="method-val" id="bfYmcaVal">--</span>
+                            </div>
+                            <div class="breakdown-row">
+                                <span class="method-name">Deurenberg (BMI & Age)</span>
+                                <span class="method-val" id="bfBmiVal">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Metrics Grid -->
+                    <div class="metrics-grid">
+                        <!-- BMR Card -->
+                        <div class="card metric-card">
+                            <div class="metric-icon bmr-theme">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                                    <line x1="12" y1="2" x2="12" y2="12"></line>
+                                </svg>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-label">BMR (Metabolic Rate)</span>
+                                <span class="metric-value"><span id="bmrValue">1,620</span> <span class="metric-unit">kcal</span></span>
+                            </div>
+                        </div>
+
+                        <!-- TDEE Card -->
+                        <div class="card metric-card">
+                            <div class="metric-icon tdee-theme">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                                </svg>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-label">TDEE (Daily Burn)</span>
+                                <span class="metric-value"><span id="tdeeValue">2,228</span> <span class="metric-unit">kcal</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Ideal Weight Card -->
+                        <div class="card metric-card">
+                            <div class="metric-icon weight-theme">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                </svg>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-label">Ideal Weight (Devine)</span>
+                                <span class="metric-value"><span id="idealWeightValue">68.2</span> <span class="metric-unit" id="idealWeightUnit">kg</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Water Intake Card -->
+                        <div class="card metric-card">
+                            <div class="metric-icon water-theme">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-label">Daily Hydration</span>
+                                <span class="metric-value"><span id="waterValue">2.4</span> <span class="metric-unit">Liters</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calorie Goals & Targets -->
+                    <div class="card goals-card">
+                        <h3 class="card-title">Daily Calorie Target Recommendations</h3>
+                        <div class="goals-grid">
+                            <div class="goal-item loss">
+                                <span class="goal-type">Weight Loss (Mild Deficit)</span>
+                                <span class="goal-calories"><span id="calorieLossValue">1,728</span> <span class="unit">kcal/day</span></span>
+                            </div>
+                            <div class="goal-item maintenance">
+                                <span class="goal-type">Weight Maintenance</span>
+                                <span class="goal-calories"><span id="calorieMaintenanceValue">2,228</span> <span class="unit">kcal/day</span></span>
+                            </div>
+                            <div class="goal-item gain">
+                                <span class="goal-type">Weight Gain (Mild Surplus)</span>
+                                <span class="goal-calories"><span id="calorieGainValue">2,728</span> <span class="unit">kcal/day</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Health Tips & Advice -->
+                    <div class="card feedback-card">
+                        <h3 class="card-title">Personalized Diagnostic Insight</h3>
+                        <div class="feedback-content">
+                            <div class="feedback-header">
+                                <div id="feedbackIndicator" class="indicator normal"></div>
+                                <span id="feedbackTitle">Your status is optimal</span>
+                            </div>
+                            <p id="feedbackText" class="feedback-paragraph">
+                                You maintain a healthy weight. Standard guidelines advise maintaining consistent nutrient ratios, regular resistance training, and hydration of at least 2.5 Liters daily.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- AI Coach Insights Card -->
+                    <div class="card ai-coach-card">
+                        <div class="ai-header-row">
+                            <h3 class="card-title">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--primary)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                    <polyline points="2 17 12 22 22 17"></polyline>
+                                    <polyline points="2 12 12 17 22 12"></polyline>
+                                </svg>
+                                AI Fitness & Diet Coach
+                            </h3>
+                            <button id="generateAiBtn" class="ai-btn">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                                Generate AI Insights
+                            </button>
+                        </div>
+                        
+                        <div id="aiContentPlaceholder" class="ai-placeholder">
+                            <p>Unlock personalized AI diet plans, workout schedules, and metabolic health forecasts based on your details.</p>
+                        </div>
+                        
+                        <div id="aiContentBox" class="ai-content hidden">
+                            <!-- Macro/Calorie Summary Bar -->
+                            <div class="ai-summary-bar" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                                <div class="card metric-card" style="margin-top: 0; padding: 12px; background: rgba(255, 255, 255, 0.03); border: 1.5px solid var(--card-border); border-radius: 16px;">
+                                    <div class="metric-info">
+                                        <span class="metric-label" style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px;">Target Calories</span>
+                                        <span class="metric-value" id="aiCalorieGoal" style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">--</span>
+                                    </div>
+                                </div>
+                                <div class="card metric-card" style="margin-top: 0; padding: 12px; background: rgba(255, 255, 255, 0.03); border: 1.5px solid var(--card-border); border-radius: 16px;">
+                                    <div class="metric-info">
+                                        <span class="metric-label" style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px;">Macros (C / P / F)</span>
+                                        <span class="metric-value" id="aiMacroGoal" style="font-size: 1.05rem; font-weight: 800; color: var(--accent-teal);">--</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ai-section" style="border-bottom: none; margin-bottom: 20px; padding-bottom: 0;">
+                                <h4 style="display: flex; align-items: center; gap: 8px; font-size: 0.95rem; margin-bottom: 10px; color: var(--primary); font-weight: 800;">🥗 Daily Meal & Diet Plan</h4>
+                                <div class="table-container" style="overflow-x: auto; width: 100%; border-radius: 14px; border: 1.5px solid var(--card-border); background: rgba(15, 23, 42, 0.2);">
+                                    <table style="width: 100%; border-collapse: collapse; min-width: 450px; font-size: 0.82rem; text-align: left;">
+                                        <thead>
+                                            <tr style="background: rgba(139, 92, 246, 0.15); border-bottom: 1.5px solid var(--card-border);">
+                                                <th style="padding: 10px 12px; font-weight: 700; color: var(--text-primary); width: 20%;">Meal</th>
+                                                <th style="padding: 10px 12px; font-weight: 700; color: var(--text-primary);">Suggested Diet</th>
+                                                <th style="padding: 10px 12px; font-weight: 700; color: var(--text-primary); text-align: right; width: 20%;">Calories</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="aiDietTableBody" style="color: var(--text-secondary);">
+                                            <!-- Dynamic Rows -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p id="aiHydrationText" style="margin-top: 8px; font-size: 0.8rem; font-style: italic; color: var(--text-muted); line-height: 1.4;"></p>
+                            </div>
+                            
+                            <div class="ai-section" style="border-bottom: none; margin-bottom: 20px; padding-bottom: 0;">
+                                <h4 style="display: flex; align-items: center; gap: 8px; font-size: 0.95rem; margin-bottom: 10px; color: var(--primary); font-weight: 800;">🏋️ Workout & Fat Loss Strategy</h4>
+                                <div class="table-container" style="overflow-x: auto; width: 100%; border-radius: 14px; border: 1.5px solid var(--card-border); background: rgba(15, 23, 42, 0.2);">
+                                    <table style="width: 100%; border-collapse: collapse; min-width: 450px; font-size: 0.82rem; text-align: left;">
+                                        <thead>
+                                            <tr style="background: rgba(139, 92, 246, 0.15); border-bottom: 1.5px solid var(--card-border);">
+                                                <th style="padding: 10px 12px; font-weight: 700; color: var(--text-primary); width: 15%;">Day</th>
+                                                <th style="padding: 10px 12px; font-weight: 700; color: var(--text-primary);">Workout Routine</th>
+                                                <th style="padding: 10px 12px; font-weight: 700; color: var(--text-primary); width: 30%;">Focus Goal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="aiWorkoutTableBody" style="color: var(--text-secondary);">
+                                            <!-- Dynamic Rows -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="ai-section" style="border-bottom: none; padding-bottom: 0;">
+                                <h4 style="display: flex; align-items: center; gap: 8px; font-size: 0.95rem; margin-bottom: 10px; color: var(--primary); font-weight: 800;">🩺 Metabolic Health Forecast</h4>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div class="forecast-item" style="display: flex; gap: 10px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); padding: 10px; border-radius: 12px;">
+                                        <div style="font-size: 1.1rem; display: flex; align-items: center;">📈</div>
+                                        <div>
+                                            <div style="font-weight: 700; font-size: 0.8rem; color: var(--text-primary); margin-bottom: 2px;">Metabolic Trajectory</div>
+                                            <p id="aiForecastTrajectory" style="margin: 0; font-size: 0.78rem; line-height: 1.4; color: var(--text-secondary);"></p>
+                                        </div>
+                                    </div>
+                                    <div class="forecast-item" style="display: flex; gap: 10px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); padding: 10px; border-radius: 12px;">
+                                        <div style="font-size: 1.1rem; display: flex; align-items: center;">⚡</div>
+                                        <div>
+                                            <div style="font-weight: 700; font-size: 0.8rem; color: var(--text-primary); margin-bottom: 2px;">Energy Stability</div>
+                                            <p id="aiForecastEnergy" style="margin: 0; font-size: 0.78rem; line-height: 1.4; color: var(--text-secondary);"></p>
+                                        </div>
+                                    </div>
+                                    <div class="forecast-item" style="display: flex; gap: 10px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); padding: 10px; border-radius: 12px;">
+                                        <div style="font-size: 1.1rem; display: flex; align-items: center;">🛡️</div>
+                                        <div>
+                                            <div style="font-weight: 700; font-size: 0.8rem; color: var(--text-primary); margin-bottom: 2px;">Risk Factor Outlook</div>
+                                            <p id="aiForecastRisks" style="margin: 0; font-size: 0.78rem; line-height: 1.4; color: var(--text-secondary);"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="aiLoadingBox" class="ai-loading hidden">
+                            <div class="spinner"></div>
+                            <span>Gemini AI is analyzing your medical profile...</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+        
+        <footer class="app-footer">
+            <p>&copy; 2026 Vitalify Health Engine. Powered by mathematically precise medical calculations.</p>
+        </footer>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal-overlay hidden">
+        <div class="card modal-card">
+            <div class="modal-header">
+                <h3>System Settings</h3>
+                <button id="closeSettingsBtn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="apiKeyInput" class="input-label">Gemini API Key</label>
+                    <div class="input-with-label">
+                        <input type="password" id="apiKeyInput" placeholder="AIzaSy..." class="number-input">
+                    </div>
+                    <span class="input-hint" style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 6px;">Enter your Google Gemini API key to enable personalized AI insights.</span>
+                </div>
+                
+                <div class="form-group toggle-wrapper" style="margin-top: 16px;">
+                    <label class="toggle-switch-wrapper">
+                        <input type="checkbox" id="passcodeToggle" class="toggle-checkbox">
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label-text">Lock Key with 4-Digit Passcode</span>
+                    </label>
+                </div>
+                
+                <div class="form-group hidden" id="pinSetupGroup" style="margin-top: 16px;">
+                    <label for="pinInput" class="input-label">Set 4-Digit PIN</label>
+                    <div class="input-with-label">
+                        <input type="password" id="pinInput" maxlength="4" placeholder="••••" class="number-input">
+                    </div>
+                </div>
+                
+                <button id="saveSettingsBtn" class="calculate-btn" style="margin-top: 20px; width: 100%;">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unlock PIN Modal -->
+    <div id="unlockModal" class="modal-overlay hidden">
+        <div class="card modal-card pin-card" style="max-width: 380px;">
+            <div class="modal-header">
+                <h3>Enter PIN to Unlock AI Engine</h3>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <div class="pin-display-container" style="margin: 16px 0;">
+                    <input type="password" id="unlockPinInput" maxlength="4" placeholder="••••" class="number-input pin-field" style="text-align: center; font-size: 1.5rem; letter-spacing: 8px;">
+                </div>
+                <div id="pinErrorMessage" class="pin-error hidden" style="color: var(--accent-red); font-size: 0.8rem; margin-bottom: 12px; font-weight: 600;">Incorrect PIN. Please try again.</div>
+                <div class="pin-buttons-grid">
+                    <button id="submitPinBtn" class="calculate-btn" style="width: 100%;">Unlock</button>
+                    <button id="cancelPinBtn" class="theme-toggle-btn" style="width: 100%; border-radius: 16px; margin-top: 8px; padding: 12px 0;">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
+

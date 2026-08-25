@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OptiCompress PRO - Batch Image & PDF Reducer/Resizer</title>
+  <meta name="description" content="Reduce image and PDF file size in KB or MB easily. Resize PDF page dimensions, batch compress client-side with full privacy, and download individually or as a ZIP.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- JS Libraries CDN -->
+  <!-- browser-image-compression for Image & PDF Page Compression -->
+  <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+  <!-- JSZip for ZIP download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <!-- PDF-Lib for PDF Manipulation & Resizing -->
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <!-- PDF.js for PDF rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <i data-lucide="zap"></i>
+        </div>
+        <div>
+          <h1 class="logo-title">OptiCompress <span class="badge-pro">PRO</span></h1>
+          <p class="logo-subtitle">Batch Image & PDF Compressor & Page Resizer</p>
+        </div>
+      </div>
+
+      <!-- Top Navigation Tabs -->
+      <nav class="nav-tabs">
+        <button type="button" class="nav-tab active" id="tab-btn-image" data-tab="image">
+          <i data-lucide="image"></i>
+          <span>Image Tool</span>
+        </button>
+        <button type="button" class="nav-tab" id="tab-btn-pdf" data-tab="pdf">
+          <i data-lucide="file-text"></i>
+          <span>PDF Tool</span>
+          <span class="tab-badge">NEW</span>
+        </button>
+      </nav>
+
+      <div class="header-badges">
+        <span class="pill-badge"><i data-lucide="shield-check"></i> 100% Private (No Uploads)</span>
+        <span class="pill-badge"><i data-lucide="cpu"></i> Client-Side JS</span>
+      </div>
+    </header>
+
+    <!-- TAB 1: IMAGE COMPRESSOR -->
+    <div id="tab-content-image" class="tab-page active">
+      <main class="main-layout">
+        <!-- Settings Panel -->
+        <aside class="panel settings-panel">
+          <div class="panel-header">
+            <h2><i data-lucide="sliders"></i> Image Compression Controls</h2>
+          </div>
+
+          <form id="settings-form" onsubmit="event.preventDefault();">
+            <!-- Target Mode Switcher -->
+            <div class="form-group">
+              <label class="form-label">Compression Mode</label>
+              <div class="segmented-control">
+                <input type="radio" id="mode-target" name="compressionMode" value="target" checked>
+                <label for="mode-target" class="segment"><i data-lucide="target"></i> Target File Size</label>
+                
+                <input type="radio" id="mode-quality" name="compressionMode" value="quality">
+                <label for="mode-quality" class="segment"><i data-lucide="percent"></i> Quality Slider</label>
+              </div>
+            </div>
+
+            <!-- Target File Size Option -->
+            <div id="target-size-container" class="form-group mode-option">
+              <label for="target-size-input" class="form-label">
+                Target Max File Size
+                <span class="tooltip-icon" title="Each image will be compressed until it reaches or falls below this size.">
+                  <i data-lucide="help-circle"></i>
+                </span>
+              </label>
+              <div class="input-with-unit">
+                <input type="number" id="target-size-input" value="300" min="1" max="100000" step="1" class="form-control">
+                <select id="target-size-unit" class="unit-select">
+                  <option value="KB" selected>KB</option>
+                  <option value="MB">MB</option>
+                </select>
+              </div>
+              <p class="field-hint">e.g. Set 200 KB to limit images for web forms, passports, or email attachments.</p>
+            </div>
+
+            <!-- Quality Slider Option -->
+            <div id="quality-slider-container" class="form-group mode-option hidden">
+              <div class="label-row">
+                <label for="quality-slider" class="form-label">Image Quality</label>
+                <span id="quality-value-display" class="val-badge">80%</span>
+              </div>
+              <input type="range" id="quality-slider" min="5" max="100" value="80" class="range-slider">
+              <div class="range-labels">
+                <span>Max Saving (5%)</span>
+                <span>Balanced (80%)</span>
+                <span>Best Quality (100%)</span>
+              </div>
+            </div>
+
+            <!-- Dimension Resizing -->
+            <div class="form-group">
+              <label class="form-label">
+                Max Dimension Limit (Optional)
+                <span class="tooltip-icon" title="Scales down images larger than this width/height while retaining aspect ratio.">
+                  <i data-lucide="help-circle"></i>
+                </span>
+              </label>
+              <div class="input-with-unit">
+                <select id="max-dimension-preset" class="form-control">
+                  <option value="original" selected>Original Dimensions (No Resize)</option>
+                  <option value="3840">4K Ultra HD (3840px)</option>
+                  <option value="1920">Full HD (1920px)</option>
+                  <option value="1280">HD (1280px)</option>
+                  <option value="800">Web Standard (800px)</option>
+                  <option value="custom">Custom Resolution...</option>
+                </select>
+              </div>
+              <div id="custom-dimension-container" class="custom-dim-row hidden">
+                <input type="number" id="custom-max-width" placeholder="Max Width (px)" class="form-control" min="100" max="10000">
+                <input type="number" id="custom-max-height" placeholder="Max Height (px)" class="form-control" min="100" max="10000">
+              </div>
+            </div>
+
+            <!-- Output Format -->
+            <div class="form-group">
+              <label for="output-format" class="form-label">Output Format</label>
+              <select id="output-format" class="form-control">
+                <option value="original" selected>Keep Original Format</option>
+                <option value="image/webp">WebP (Best Compression & Modern Web)</option>
+                <option value="image/jpeg">JPEG (Universal Compatibility)</option>
+                <option value="image/png">PNG (Lossless / Transparency)</option>
+              </select>
+            </div>
+
+            <button type="button" id="apply-settings-btn" class="btn btn-secondary full-width">
+              <i data-lucide="refresh-cw"></i> Re-compress All Images
+            </button>
+          </form>
+        </aside>
+
+        <!-- Content Work Area -->
+        <section class="work-area">
+          <div id="dropzone" class="dropzone">
+            <input type="file" id="file-input" multiple accept="image/jpeg,image/png,image/webp,image/bmp,image/gif" class="file-input">
+            <div class="dropzone-content">
+              <div class="dropzone-icon-ring">
+                <i data-lucide="upload-cloud"></i>
+              </div>
+              <h3>Drag & Drop images here</h3>
+              <p class="dropzone-sub">or <span class="btn-text-link">browse files from computer</span></p>
+              <div class="dropzone-tags">
+                <span class="tag">JPEG</span>
+                <span class="tag">PNG</span>
+                <span class="tag">WebP</span>
+                <span class="tag">BMP</span>
+                <span class="tag">GIF</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Global Stats Bar -->
+          <div id="summary-bar" class="summary-bar hidden">
+            <div class="stat-card">
+              <span class="stat-label">Total Images</span>
+              <span id="stat-count" class="stat-val">0</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Original Total</span>
+              <span id="stat-orig-size" class="stat-val">0 KB</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Compressed Total</span>
+              <span id="stat-comp-size" class="stat-val accent">0 KB</span>
+            </div>
+            <div class="stat-card highlight">
+              <span class="stat-label">Total Space Saved</span>
+              <div class="stat-val-row">
+                <span id="stat-saved-percent" class="stat-val green">0%</span>
+                <span id="stat-saved-size" class="stat-sub">(0 KB)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Toolbar -->
+          <div id="batch-toolbar" class="batch-toolbar hidden">
+            <div class="toolbar-left">
+              <h3 class="queue-title">Uploaded Images (<span id="queue-count">0</span>)</h3>
+            </div>
+            <div class="toolbar-actions">
+              <button type="button" id="clear-all-btn" class="btn btn-outline btn-sm">
+                <i data-lucide="trash-2"></i> Clear Queue
+              </button>
+              <button type="button" id="compress-all-btn" class="btn btn-secondary btn-sm">
+                <i data-lucide="play"></i> Start Compression
+              </button>
+              <button type="button" id="download-all-btn" class="btn btn-primary btn-sm" disabled>
+                <i data-lucide="download-cloud"></i> Download All (.ZIP)
+              </button>
+            </div>
+          </div>
+
+          <div id="image-list" class="image-list">
+            <div id="empty-state" class="empty-state">
+              <div class="empty-icon"><i data-lucide="image"></i></div>
+              <p>No images selected yet. Drag & drop images above to start reducing file size!</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- TAB 2: PDF COMPRESSOR & RESIZER -->
+    <div id="tab-content-pdf" class="tab-page hidden">
+      <main class="main-layout">
+        <!-- PDF Settings Panel -->
+        <aside class="panel settings-panel">
+          <div class="panel-header">
+            <h2><i data-lucide="file-cog"></i> PDF Processing Controls</h2>
+          </div>
+
+          <form id="pdf-settings-form" onsubmit="event.preventDefault();">
+            <!-- Mode Switcher -->
+            <div class="form-group">
+              <label class="form-label">PDF Action</label>
+              <div class="segmented-control">
+                <input type="radio" id="pdf-mode-compress" name="pdfMode" value="compress" checked>
+                <label for="pdf-mode-compress" class="segment"><i data-lucide="minimize-2"></i> Reduce Size (KB/MB)</label>
+                
+                <input type="radio" id="pdf-mode-resize" name="pdfMode" value="resize">
+                <label for="pdf-mode-resize" class="segment"><i data-lucide="maximize-2"></i> Increase/Resize Page</label>
+              </div>
+            </div>
+
+            <!-- PDF Compress Options -->
+            <div id="pdf-compress-container" class="form-group pdf-option">
+              <label for="pdf-target-size-input" class="form-label">
+                Target Max File Size
+                <span class="tooltip-icon" title="Renders PDF pages to compressed images to meet target KB/MB limits.">
+                  <i data-lucide="help-circle"></i>
+                </span>
+              </label>
+              <div class="input-with-unit">
+                <input type="number" id="pdf-target-size-input" value="500" min="10" max="500000" step="10" class="form-control">
+                <select id="pdf-target-size-unit" class="unit-select">
+                  <option value="KB" selected>KB</option>
+                  <option value="MB">MB</option>
+                </select>
+              </div>
+              <p class="field-hint">Compresses scanned documents or image-heavy PDFs to exact KB limits.</p>
+
+              <div class="form-group" style="margin-top: 14px;">
+                <label for="pdf-quality-preset" class="form-label">Compression Profile</label>
+                <select id="pdf-quality-preset" class="form-control">
+                  <option value="balanced" selected>Balanced Compression (Recommended)</option>
+                  <option value="high">High Compression (Max Size Saving)</option>
+                  <option value="light">Light Compression (Preserve High Detail)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- PDF Page Rescale/Resize Options (Hidden by default) -->
+            <div id="pdf-resize-container" class="form-group pdf-option hidden">
+              <label for="pdf-scale-preset" class="form-label">
+                Page Size / Scale Preset
+                <span class="tooltip-icon" title="Scales PDF page dimensions up or down.">
+                  <i data-lucide="help-circle"></i>
+                </span>
+              </label>
+              <select id="pdf-scale-preset" class="form-control">
+                <option value="scale_150">Increase Dimensions (+50% / 1.5x Larger)</option>
+                <option value="scale_200">Double Dimensions (+100% / 2x Larger)</option>
+                <option value="scale_75">Decrease Dimensions (-25% / 0.75x Smaller)</option>
+                <option value="scale_50">Half Dimensions (-50% / 0.5x Smaller)</option>
+                <option value="preset_a4">Standard A4 Size (595 x 842 pt)</option>
+                <option value="preset_a3">Poster A3 Size (842 x 1191 pt)</option>
+                <option value="preset_letter">US Letter (612 x 792 pt)</option>
+                <option value="custom_scale">Custom Scale %...</option>
+              </select>
+
+              <div id="pdf-custom-scale-row" class="custom-dim-row hidden">
+                <input type="number" id="pdf-custom-scale-val" placeholder="Scale % (e.g. 120)" value="120" min="10" max="500" class="form-control">
+              </div>
+            </div>
+
+            <button type="button" id="pdf-apply-settings-btn" class="btn btn-secondary full-width">
+              <i data-lucide="refresh-cw"></i> Process PDF Queue
+            </button>
+          </form>
+        </aside>
+
+        <!-- PDF Work Area -->
+        <section class="work-area">
+          <div id="pdf-dropzone" class="dropzone">
+            <input type="file" id="pdf-file-input" multiple accept="application/pdf,.pdf" class="file-input">
+            <div class="dropzone-content">
+              <div class="dropzone-icon-ring" style="background: rgba(99, 102, 241, 0.1); border-color: rgba(99, 102, 241, 0.3); color: #818cf8;">
+                <i data-lucide="file-text"></i>
+              </div>
+              <h3>Drag & Drop PDF files here</h3>
+              <p class="dropzone-sub">or <span class="btn-text-link" style="color: #818cf8;">select PDFs from computer</span></p>
+              <div class="dropzone-tags">
+                <span class="tag">.PDF</span>
+                <span class="tag">Multi-Page</span>
+                <span class="tag">Scanned Docs</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PDF Stats Bar -->
+          <div id="pdf-summary-bar" class="summary-bar hidden">
+            <div class="stat-card">
+              <span class="stat-label">Total PDFs</span>
+              <span id="pdf-stat-count" class="stat-val">0</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Original Total</span>
+              <span id="pdf-stat-orig-size" class="stat-val">0 KB</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Processed Total</span>
+              <span id="pdf-stat-comp-size" class="stat-val accent">0 KB</span>
+            </div>
+            <div class="stat-card highlight">
+              <span class="stat-label">Total Size Difference</span>
+              <div class="stat-val-row">
+                <span id="pdf-stat-saved-percent" class="stat-val green">0%</span>
+                <span id="pdf-stat-saved-size" class="stat-sub">(0 KB)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PDF Batch Toolbar -->
+          <div id="pdf-batch-toolbar" class="batch-toolbar hidden">
+            <div class="toolbar-left">
+              <h3 class="queue-title">Uploaded PDFs (<span id="pdf-queue-count">0</span>)</h3>
+            </div>
+            <div class="toolbar-actions">
+              <button type="button" id="pdf-clear-all-btn" class="btn btn-outline btn-sm">
+                <i data-lucide="trash-2"></i> Clear Queue
+              </button>
+              <button type="button" id="pdf-process-all-btn" class="btn btn-secondary btn-sm">
+                <i data-lucide="play"></i> Process All PDFs
+              </button>
+              <button type="button" id="pdf-download-all-btn" class="btn btn-primary btn-sm" disabled>
+                <i data-lucide="download-cloud"></i> Download All (.ZIP)
+              </button>
+            </div>
+          </div>
+
+          <!-- PDF List -->
+          <div id="pdf-list" class="image-list">
+            <div id="pdf-empty-state" class="empty-state">
+              <div class="empty-icon"><i data-lucide="file-text"></i></div>
+              <p>No PDF files selected yet. Drag & drop PDF files above to reduce file size or resize pages!</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Comparison Modal -->
+    <div id="preview-modal" class="modal hidden">
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-title" class="modal-filename">image.jpg</h3>
+            <span id="modal-subtitle" class="modal-sub">Side-by-side Quality & Size Comparison</span>
+          </div>
+          <button type="button" id="modal-close-btn" class="btn-icon">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="comparison-grid">
+            <div class="comp-box">
+              <div class="comp-badge original">Original File</div>
+              <div class="comp-img-container">
+                <img id="modal-img-orig" src="" alt="Original Preview">
+              </div>
+              <div class="comp-meta">
+                <div>Dimensions: <span id="modal-orig-dim">-</span></div>
+                <div>Size: <strong id="modal-orig-size">-</strong></div>
+              </div>
+            </div>
+
+            <div class="comp-box">
+              <div class="comp-badge compressed">Processed File</div>
+              <div class="comp-img-container">
+                <img id="modal-img-comp" src="" alt="Processed Preview">
+              </div>
+              <div class="comp-meta">
+                <div>Dimensions: <span id="modal-comp-dim">-</span></div>
+                <div>Size: <strong id="modal-comp-size" class="text-green">-</strong></div>
+                <div>Diff: <span id="modal-saved-badge" class="badge-saving">-</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="modal-download-btn" class="btn btn-primary">
+            <i data-lucide="download"></i> Download File
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

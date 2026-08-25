@@ -1,0 +1,266 @@
+[
+  {
+    "id": "agreement",
+    "title": "Agreement",
+    "original_file": "agreement.pdf",
+    "img_name": "agreement.png",
+    "rel_path": "certificates/images/agreement.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "angil_scrum_certificate",
+    "title": "Angil.Scrum",
+    "original_file": "angil.scrum certificate.pdf",
+    "img_name": "angil_scrum_certificate.png",
+    "rel_path": "certificates/images/angil_scrum_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "angular_certificate",
+    "title": "Angular",
+    "original_file": "angular certificate.pdf",
+    "img_name": "angular_certificate.png",
+    "rel_path": "certificates/images/angular_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "basic_of_python_certificate",
+    "title": "Basic Of Python",
+    "original_file": "basic of python certificate.pdf",
+    "img_name": "basic_of_python_certificate.png",
+    "rel_path": "certificates/images/basic_of_python_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "certificate_1",
+    "title": "(1)",
+    "original_file": "certificate  (1).pdf",
+    "img_name": "certificate_1.png",
+    "rel_path": "certificates/images/certificate_1.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "certificate_e_ict_academy_iit_kanpur",
+    "title": "E&Ict Academy, Iit Kanpur",
+    "original_file": "Certificate - E&ICT Academy, IIT Kanpur.pdf",
+    "img_name": "certificate_e_ict_academy_iit_kanpur.png",
+    "rel_path": "certificates/images/certificate_e_ict_academy_iit_kanpur.png",
+    "issuer": "E&ICT Academy, IIT Kanpur"
+  },
+  {
+    "id": "certificateofcompletion_agile_software_development_clean_coding_practices",
+    "title": "Agile Software Development Clean Coding Practices",
+    "original_file": "CertificateOfCompletion_Agile Software Development Clean Coding Practices.pdf",
+    "img_name": "certificateofcompletion_agile_software_development_clean_coding_practices.png",
+    "rel_path": "certificates/images/certificateofcompletion_agile_software_development_clean_coding_practices.png",
+    "issuer": "LinkedIn / Microsoft"
+  },
+  {
+    "id": "certificateofcompletion_gemini_in_google_sheets",
+    "title": "Gemini In Google Sheets",
+    "original_file": "CertificateOfCompletion_Gemini in Google Sheets.pdf",
+    "img_name": "certificateofcompletion_gemini_in_google_sheets.png",
+    "rel_path": "certificates/images/certificateofcompletion_gemini_in_google_sheets.png",
+    "issuer": "LinkedIn / Microsoft"
+  },
+  {
+    "id": "certificateofcompletion_generative_ai_skills_for_creative_content_opportunities_issues_and_ethics",
+    "title": "Generative Ai Skills For Creative Content Opportunities Issues And Ethics",
+    "original_file": "CertificateOfCompletion_Generative AI Skills for Creative Content Opportunities Issues and Ethics.pdf",
+    "img_name": "certificateofcompletion_generative_ai_skills_for_creative_content_opportunities_issues_and_ethics.png",
+    "rel_path": "certificates/images/certificateofcompletion_generative_ai_skills_for_creative_content_opportunities_issues_and_ethics.png",
+    "issuer": "LinkedIn / Microsoft"
+  },
+  {
+    "id": "certificateofcompletion_introduction_to_artificial_intelligence_1",
+    "title": "Introduction To Artificial Intelligence (1)",
+    "original_file": "CertificateOfCompletion_Introduction to Artificial Intelligence (1).pdf",
+    "img_name": "certificateofcompletion_introduction_to_artificial_intelligence_1.png",
+    "rel_path": "certificates/images/certificateofcompletion_introduction_to_artificial_intelligence_1.png",
+    "issuer": "LinkedIn / Microsoft"
+  },
+  {
+    "id": "certificateofcompletion_introduction_to_artificial_intelligence",
+    "title": "Introduction To Artificial Intelligence",
+    "original_file": "CertificateOfCompletion_Introduction to Artificial Intelligence.pdf",
+    "img_name": "certificateofcompletion_introduction_to_artificial_intelligence.png",
+    "rel_path": "certificates/images/certificateofcompletion_introduction_to_artificial_intelligence.png",
+    "issuer": "LinkedIn / Microsoft"
+  },
+  {
+    "id": "certificateofcompletion_microsoft_azure_essentials_by_microsoft_press",
+    "title": "Microsoft Azure Essentials By Microsoft Press",
+    "original_file": "CertificateOfCompletion_Microsoft Azure Essentials by Microsoft Press.pdf",
+    "img_name": "certificateofcompletion_microsoft_azure_essentials_by_microsoft_press.png",
+    "rel_path": "certificates/images/certificateofcompletion_microsoft_azure_essentials_by_microsoft_press.png",
+    "issuer": "LinkedIn / Microsoft"
+  },
+  {
+    "id": "certificateofcompletion_programming_concepts_for_python",
+    "title": "Programming Concepts For Python",
+    "original_file": "CertificateOfCompletion_Programming Concepts for Python.pdf",
+    "img_name": "certificateofcompletion_programming_concepts_for_python.png",
+    "rel_path": "certificates/images/certificateofcompletion_programming_concepts_for_python.png",
+    "issuer": "LinkedIn / Microsoft"
+  },
+  {
+    "id": "certificateofcompletion_programming_foundations_version_control_with_git_1",
+    "title": "Programming Foundations Version Control With Git (1)",
+    "original_file": "CertificateOfCompletion_Programming Foundations Version Control with Git (1).pdf",
+    "img_name": "certificateofcompletion_programming_foundations_version_control_with_git_1.png",
+    "rel_path": "certificates/images/certificateofcompletion_programming_foundations_version_control_with_git_1.png",
+    "issuer": "LinkedIn / Microsoft"
+  },
+  {
+    "id": "certificateofcompletion_programming_foundations_version_control_with_git",
+    "title": "Programming Foundations Version Control With Git",
+    "original_file": "CertificateOfCompletion_Programming Foundations Version Control with Git.pdf",
+    "img_name": "certificateofcompletion_programming_foundations_version_control_with_git.png",
+    "rel_path": "certificates/images/certificateofcompletion_programming_foundations_version_control_with_git.png",
+    "issuer": "LinkedIn / Microsoft"
+  },
+  {
+    "id": "data_base_management_1_certificate",
+    "title": "Data Base Management 1",
+    "original_file": "data base management 1 certificate.pdf",
+    "img_name": "data_base_management_1_certificate.png",
+    "rel_path": "certificates/images/data_base_management_1_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "database_management_2_certificate",
+    "title": "Database Management 2",
+    "original_file": "database management 2 certificate.pdf",
+    "img_name": "database_management_2_certificate.png",
+    "rel_path": "certificates/images/database_management_2_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "email_writing_skill_certificate",
+    "title": "Email Writing Skill",
+    "original_file": "email writing skill certificate.pdf",
+    "img_name": "email_writing_skill_certificate.png",
+    "rel_path": "certificates/images/email_writing_skill_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "foundation_in_python_programming_certificate_pdf_2024_08_30t104657_725",
+    "title": "Foundation In Python Programming .Pdf - 2024-08-30T104657.725",
+    "original_file": "Foundation in Python Programming Certificate.pdf - 2024-08-30T104657.725.pdf",
+    "img_name": "foundation_in_python_programming_certificate_pdf_2024_08_30t104657_725.png",
+    "rel_path": "certificates/images/foundation_in_python_programming_certificate_pdf_2024_08_30t104657_725.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "gemini_certificate",
+    "title": "Gemini",
+    "original_file": "Gemini certificate.pdf",
+    "img_name": "gemini_certificate.png",
+    "rel_path": "certificates/images/gemini_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "high_impact_skill_certificate_1",
+    "title": "High Impact Skill  (1)",
+    "original_file": "high impact skill certificate (1).pdf",
+    "img_name": "high_impact_skill_certificate_1.png",
+    "rel_path": "certificates/images/high_impact_skill_certificate_1.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "high_impact_skill_certificate",
+    "title": "High Impact Skill",
+    "original_file": "high impact skill certificate.pdf",
+    "img_name": "high_impact_skill_certificate.png",
+    "rel_path": "certificates/images/high_impact_skill_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "introduction_to_nosql_certificate",
+    "title": "Introduction To Nosql",
+    "original_file": "introduction to nosql certificate.pdf",
+    "img_name": "introduction_to_nosql_certificate.png",
+    "rel_path": "certificates/images/introduction_to_nosql_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "object_oriented_certificate",
+    "title": "Object Oriented",
+    "original_file": "object oriented certificate.pdf",
+    "img_name": "object_oriented_certificate.png",
+    "rel_path": "certificates/images/object_oriented_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "programing_fundamental_2_certificate",
+    "title": "Programing Fundamental 2",
+    "original_file": "programing fundamental 2 certificate.pdf",
+    "img_name": "programing_fundamental_2_certificate.png",
+    "rel_path": "certificates/images/programing_fundamental_2_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "programing_fundamental_certificate",
+    "title": "Programing Fundamental",
+    "original_file": "programing fundamental certificate.pdf",
+    "img_name": "programing_fundamental_certificate.png",
+    "rel_path": "certificates/images/programing_fundamental_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "raj_soni_1",
+    "title": "Raj Soni (1)",
+    "original_file": "Raj Soni (1).pdf",
+    "img_name": "raj_soni_1.png",
+    "rel_path": "certificates/images/raj_soni_1.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "raj_soni",
+    "title": "Raj Soni",
+    "original_file": "Raj Soni.pdf",
+    "img_name": "raj_soni.png",
+    "rel_path": "certificates/images/raj_soni.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "raj_soni_5243302",
+    "title": "Raj_Soni_5243302",
+    "original_file": "Raj_Soni_5243302.pdf",
+    "img_name": "raj_soni_5243302.png",
+    "rel_path": "certificates/images/raj_soni_5243302.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "raj_soni_5252873",
+    "title": "Raj_Soni_5252873",
+    "original_file": "Raj_Soni_5252873.pdf",
+    "img_name": "raj_soni_5252873.png",
+    "rel_path": "certificates/images/raj_soni_5252873.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "software_engineering_certificate",
+    "title": "Software Engineering",
+    "original_file": "software engineering certificate.pdf",
+    "img_name": "software_engineering_certificate.png",
+    "rel_path": "certificates/images/software_engineering_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "time_managment_certificate",
+    "title": "Time Managment",
+    "original_file": "time managment certificate.pdf",
+    "img_name": "time_managment_certificate.png",
+    "rel_path": "certificates/images/time_managment_certificate.png",
+    "issuer": "Professional Certification"
+  },
+  {
+    "id": "unnati_certificate",
+    "title": "Unnati",
+    "original_file": "unnati certificate.pdf",
+    "img_name": "unnati_certificate.png",
+    "rel_path": "certificates/images/unnati_certificate.png",
+    "issuer": "Professional Certification"
+  }
+]

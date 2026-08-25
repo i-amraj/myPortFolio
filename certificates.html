@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- SEO Meta Tags -->
+  <title>Verified Certifications & Credentials | Raj Soni — AI & Full-Stack Engineer</title>
+  <meta name="description" content="Explore 30+ verified professional certifications in AI, Machine Learning, Python, Database Systems, and Cloud Engineering earned by Raj Soni from IIT Kanpur and top institutions." />
+  <meta name="keywords" content="Raj Soni Certificates, IIT Kanpur Certification, Python Certificate, AI Engineering Certification, Azure Fundamentals, Software Engineering Credentials" />
+  <meta name="author" content="Raj Soni" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- GSAP & ScrollTrigger & Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+  <!-- Certificates Base64 Secure Data Payload -->
+  <script src="certificates/certs_data.js"></script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #030712;
+      --bg-card: rgba(15, 23, 42, 0.7);
+      --bg-card-hover: rgba(30, 41, 59, 0.9);
+      --border: rgba(255, 255, 255, 0.12);
+      --border-bright: rgba(59, 130, 246, 0.5);
+      --blue: #3B82F6;
+      --purple: #8B5CF6;
+      --cyan: #06B6D4;
+      --gold: #F59E0B;
+      --green: #10B981;
+      --text: #F8FAFC;
+      --muted: rgba(248, 250, 252, 0.75);
+      --dim: rgba(248, 250, 252, 0.45);
+    }
+
+    html { scroll-behavior: auto; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Protection Notice Toast */
+    #security-toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 10000;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--blue);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(59, 130, 246, 0.3);
+      border-radius: 12px;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: #93C5FD;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    #security-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Navigation Bar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(16px);
+      background: rgba(3, 7, 18, 0.75);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 12px var(--blue); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: 10px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      color: #93C5FD;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .btn-back:hover {
+      background: var(--blue);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Hero Section */
+    .page-hero {
+      position: relative;
+      padding: 9rem 5% 4rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      color: #C4B5FD;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 70%, #A78BFA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    /* Category Filter Pills */
+    .filter-wrap {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: var(--blue);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
+    }
+
+    .filter-btn .count-badge {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+    }
+
+    /* Certificate Grid - Crisp High-Contrast Cards */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+      padding: 0 5% 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .cert-card {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      opacity: 1;
+      visibility: visible;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .cert-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(59, 130, 246, 0.6);
+      background: #1e293b;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(59, 130, 246, 0.25);
+    }
+
+    .cert-preview-wrap {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      background: #0b0f19;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* HTML5 Canvas Thumbnail (No image link in DOM) */
+    .cert-canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    /* Protection Overlay Layer */
+    .protection-shield {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .cert-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 12;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34D399;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+
+    .cert-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex: 1;
+
+    }
+
+    .cert-category {
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .cert-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.35;
+    }
+
+    .cert-issuer {
+      font-size: 0.85rem;
+      color: var(--dim);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .cert-action {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--blue);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Lightbox Modal (Protected Interactive Viewer) */
+    #modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(3, 7, 18, 0.94);
+      backdrop-filter: blur(20px);
+      display: none;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-header {
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .modal-title-group h3 { font-size: 1.2rem; color: #fff; font-weight: 700; }
+    .modal-title-group p { font-size: 0.85rem; color: var(--dim); }
+
+    .modal-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .ctrl-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 700;
+    }
+    .ctrl-btn:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    .btn-close {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #FCA5A5;
+    }
+    .btn-close:hover {
+      background: #EF4444;
+      color: #fff;
+    }
+
+    .modal-body {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    .canvas-viewport {
+      position: relative;
+      max-width: 90vw;
+      max-height: 80vh;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 50px rgba(59, 130, 246, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    #modal-canvas {
+      display: block;
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+
+    .modal-watermark-shield {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(59, 130, 246, 0.02),
+        rgba(59, 130, 246, 0.02) 15px,
+        transparent 15px,
+        transparent 30px
+      );
+      pointer-events: auto;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-watermark-shield:active { cursor: grabbing; }
+
+    .watermark-text {
+      color: rgba(255, 255, 255, 0.08);
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.2em;
+      transform: rotate(-25deg);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem 5%;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--dim);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false;" ondragstart="return false;">
+
+  <!-- Security Alert Toast -->
+  <div id="security-toast">
+    <span>🔒</span>
+    <span>Direct download or save is restricted for certificate security.</span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header>
+    <a href="index.html" class="logo">
+      <span class="logo-dot"></span> RAJ SONI
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="certificates.html" class="active">Certificates</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <a href="index.html" class="btn-back">
+      ← Back to Portfolio
+    </a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="page-hero">
+    <div class="hero-badge">
+      <span>✓</span> VERIFIED CREDENTIALS & CERTIFICATIONS
+    </div>
+    <h1 class="hero-title">30+ Professional Certifications</h1>
+    <p class="hero-desc">
+      Official certifications in Artificial Intelligence, Python Programming, Database Architecture, and Software Engineering from IIT Kanpur & top global tech institutions.
+    </p>
+
+    <!-- Category Filter Pills -->
+    <div class="filter-wrap">
+      <button class="filter-btn active" data-filter="all">
+        All Credentials <span class="count-badge" id="count-all">0</span>
+      </button>
+      <button class="filter-btn" data-filter="AI & Cloud">
+        🤖 AI & Cloud <span class="count-badge" id="count-ai">0</span>
+      </button>
+      <button class="filter-btn" data-filter="Development">
+        ⚡ Development <span class="count-badge" id="count-dev">0</span>
+      </button>
+      <button class="filter-btn" data-filter="Database">
+        🗄️ Database <span class="count-badge" id="count-db">0</span>
+      </button>
+      <button class="filter-btn" data-filter="Professional">
+        🎓 Professional <span class="count-badge" id="count-prof">0</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Certificates Card Grid -->
+  <section class="cert-grid" id="cert-container">
+    <!-- Rendered dynamically by JavaScript via HTML5 Canvas -->
+  </section>
+
+  <!-- Protected Certificate Lightbox Modal -->
+  <div id="modal-overlay">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <h3 id="modal-cert-title">Certificate Details</h3>
+        <p id="modal-cert-issuer">Issued by IIT Kanpur & Partners</p>
+      </div>
+
+      <div class="modal-controls">
+        <button class="ctrl-btn" id="btn-zoom-in" title="Zoom In (+)">+</button>
+        <button class="ctrl-btn" id="btn-zoom-out" title="Zoom Out (-)">-</button>
+        <button class="ctrl-btn" id="btn-reset-zoom" title="Reset Zoom">⟲</button>
+        <button class="ctrl-btn btn-close" id="btn-close-modal" title="Close (Esc)">✕</button>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <div class="canvas-viewport" id="viewport">
+        <!-- Rendered onto HTML5 Canvas dynamically -->
+        <canvas id="modal-canvas"></canvas>
+        <div class="modal-watermark-shield" id="modal-shield">
+          <div class="watermark-text">VERIFIED • RAJ SONI PORTFOLIO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Raj Soni. All rights reserved. Verified Certificate Credentials Repository.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Security Event Traps (Prevent Save/Print/Inspect)
+      function showSecurityToast() {
+        const toast = document.getElementById('security-toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2800);
+      }
+
+      window.addEventListener('keydown', (e) => {
+        if (
+          e.key === 'F12' || 
+          (e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P' || e.key === 'u' || e.key === 'U')) ||
+          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c'))
+        ) {
+          e.preventDefault();
+          showSecurityToast();
+          return false;
+        }
+      });
+
+      // 1. Initialize Lenis
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true
+      });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      // Register GSAP ScrollTrigger & Lenis sync
+      gsap.registerPlugin(ScrollTrigger);
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+
+      // 2. Load Certificates from Data Array
+      const certs = window.PORTFOLIO_CERTIFICATES || [];
+      const container = document.getElementById('cert-container');
+
+      // Update Counts
+      document.getElementById('count-all').textContent = certs.length;
+      document.getElementById('count-ai').textContent = certs.filter(c => c.category === 'AI & Cloud').length;
+      document.getElementById('count-dev').textContent = certs.filter(c => c.category === 'Development').length;
+      document.getElementById('count-db').textContent = certs.filter(c => c.category === 'Database').length;
+      document.getElementById('count-prof').textContent = certs.filter(c => c.category === 'Professional').length;
+
+      // Render Cards
+      function renderCertificates(filterCat = 'all') {
+        container.innerHTML = '';
+
+        const filtered = filterCat === 'all' ? certs : certs.filter(c => c.category === filterCat);
+
+        filtered.forEach((cert, idx) => {
+          const card = document.createElement('div');
+          card.className = 'cert-card';
+          card.setAttribute('data-id', cert.id);
+
+          card.innerHTML = `
+            <div class="cert-preview-wrap">
+              <canvas class="cert-canvas" id="canvas-${cert.id}"></canvas>
+              <div class="protection-shield" title="Click to View Full Verified Certificate"></div>
+              <div class="cert-badge">VERIFIED</div>
+            </div>
+            <div class="cert-info">
+              <span class="cert-category">${cert.category}</span>
+              <h3 class="cert-title">${cert.title}</h3>
+              <p class="cert-issuer">🎓 ${cert.issuer}</p>
+              <div class="cert-action">
+                <span>View Certificate</span>
+                <span>→</span>
+              </div>
+            </div>
+          `;
+
+          container.appendChild(card);
+
+          // Render Base64 image to Canvas
+          const canvas = document.getElementById(`canvas-${cert.id}`);
+          if (canvas) {
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            img.onload = () => {
+              canvas.width = img.width;
+              canvas.height = img.height;
+              ctx.drawImage(img, 0, 0);
+            };
+            img.src = cert.b64;
+          }
+
+          // Card Click Event -> Open Modal
+          card.addEventListener('click', () => openModal(cert));
+        });
+
+        // Crisp ScrollTrigger Reveal for cards as user scrolls down
+        ScrollTrigger.batch('.cert-card', {
+          start: 'top 94%',
+          onEnter: (batch) => {
+            gsap.fromTo(batch, 
+              { y: 25, opacity: 0 }, 
+              { y: 0, opacity: 1, duration: 0.5, stagger: 0.06, ease: 'power2.out', overwrite: 'auto' }
+            );
+          },
+          once: true
+        });
+        
+        ScrollTrigger.refresh();
+      }
+
+      renderCertificates('all');
+
+      // Category Filter Buttons
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.getAttribute('data-filter');
+          renderCertificates(cat);
+        });
+      });
+
+      // 3. Protected Modal Lightbox Viewer
+      const modal = document.getElementById('modal-overlay');
+      const modalCanvas = document.getElementById('modal-canvas');
+      const modalCtx = modalCanvas.getContext('2d');
+      const modalTitle = document.getElementById('modal-cert-title');
+      const modalIssuer = document.getElementById('modal-cert-issuer');
+      let currentZoom = 1;
+      let activeImage = null;
+
+      function openModal(cert) {
+        activeImage = new Image();
+        activeImage.onload = () => {
+          modalCanvas.width = activeImage.width;
+          modalCanvas.height = activeImage.height;
+          currentZoom = 1;
+          renderModalCanvas();
+          modalTitle.textContent = cert.title;
+          modalIssuer.textContent = `Official Verified Credential • Issued by ${cert.issuer}`;
+          modal.style.display = 'flex';
+          setTimeout(() => modal.classList.add('active'), 10);
+          document.body.style.overflow = 'hidden';
+        };
+        activeImage.src = cert.b64;
+      }
+
+      function renderModalCanvas() {
+        if (!activeImage) return;
+        modalCtx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);
+        modalCtx.drawImage(activeImage, 0, 0);
+        modalCanvas.style.transform = `scale(${currentZoom})`;
+        modalCanvas.style.transformOrigin = 'center center';
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        setTimeout(() => {
+          modal.style.display = 'none';
+          if (modalCanvas && modalCtx) {
+            modalCtx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);
+          }
+          activeImage = null;
+        }, 200);
+        document.body.style.overflow = '';
+      }
+
+      document.getElementById('btn-close-modal').addEventListener('click', closeModal);
+      
+      // Close modal on clicking backdrop outside viewport
+      const modalBody = document.querySelector('.modal-body');
+      if (modalBody) {
+        modalBody.addEventListener('click', (e) => {
+          if (e.target === modalBody) closeModal();
+        });
+      }
+
+      document.getElementById('btn-zoom-in').addEventListener('click', () => {
+        if (currentZoom < 2.5) { currentZoom += 0.25; renderModalCanvas(); }
+      });
+      document.getElementById('btn-zoom-out').addEventListener('click', () => {
+        if (currentZoom > 0.6) { currentZoom -= 0.25; renderModalCanvas(); }
+      });
+      document.getElementById('btn-reset-zoom').addEventListener('click', () => {
+        currentZoom = 1;
+        renderModalCanvas();
+      });
+
+      // Close on Esc
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+      });
+    });
+  </script>
+</body>
+</html>
