@@ -301,9 +301,9 @@
         /* Phone mockup grid for mobile app screenshots */
         .phone-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -311,7 +311,7 @@
             position: relative;
             background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.1));
             border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
+            border-radius: 24px;
             padding: 12px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
@@ -340,9 +340,9 @@
 
         .phone-screen {
             width: 100%;
-            border-radius: 20px;
+            border-radius: 16px;
             display: block;
-            aspect-ratio: 9/19;
+            aspect-ratio: 596/492;
             object-fit: cover;
         }
 
@@ -539,36 +539,18 @@
             </p>
             <div class="tech-stack">
                 <span class="tech-pill">📱 Jetpack Compose & Kotlin</span>
-                <span class="tech-pill">🚀 v0.5.11 (Latest)</span>
+                <span class="tech-pill">🚀 v0.6.0 (Latest)</span>
                 <span class="tech-pill">🔄 In-App Auto Updates</span>
-                <span class="tech-pill">🤖 AI Optimized Engine</span>
+                <span class="tech-pill">⏰ Sleep Timer & Tempo Control</span>
                 <span class="tech-pill">🎨 Neo-Glass Dynamic Theme</span>
             </div>
 
-            <!-- Live Downloads -->
-            <div class="mt-8 flex justify-center">
-                <div class="glass flex items-center gap-4 px-6 py-3 rounded-2xl border-neon/20 border">
-                    <div class="flex flex-col items-start">
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">Total Downloads</span>
-                        <div class="flex items-center gap-2">
-                            <span class="h-2 w-2 rounded-full bg-neon-green animate-pulse"></span>
-                            <span id="download-count" class="text-2xl font-black text-white">25</span>
-                        </div>
-                    </div>
-                    <div class="h-10 w-px bg-white/10"></div>
-                    <div class="flex flex-col items-start">
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">Active Users</span>
-                        <span class="text-2xl font-black text-neon-cyan">25+</span>
-                    </div>
-                </div>
-            </div>
-
             <div class="flex gap-4 justify-center mt-10">
-                <a href="../raj_music/raj_music.apk" download onclick="incrementDownloadCount()" class="download-btn fade-in delay-2" style="margin-top: 0;">
+                <a href="../raj_music/raj_music.apk" download class="download-btn fade-in delay-2" style="margin-top: 0;">
                     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-right: 8px;">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                     </svg>
-                    Download APK (v0.5.11)
+                    Download APK (v0.6.0)
                 </a>
                 <a href="https://github.com/i-amraj/raj_music" target="_blank" class="download-btn fade-in delay-2" style="margin-top: 0; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
                     <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;">
@@ -584,66 +566,31 @@
 
             <div class="phone-grid">
                 <div class="phone-mockup fade-in delay-1">
-                    <img class="phone-screen" src="../raj_music/WhatsApp Image 2026-02-08 at 7.57.48 PM.jpeg"
-                        alt="Home Tab" />
-                    <p class="phone-label">🏠 Home Tab</p>
-                    <p class="phone-desc">Quick Picks & Keep Listening</p>
+                    <img class="phone-screen" src="../raj_music/Screenshot from 2026-08-26 17-32-58.png"
+                        alt="Home Screen" />
+                    <p class="phone-label">🏠 Redesigned Home UI</p>
+                    <p class="phone-desc">Podcasts, Quick Picks & Recommendations</p>
                 </div>
 
                 <div class="phone-mockup fade-in delay-2">
-                    <img class="phone-screen" src="../raj_music/WhatsApp Image 2026-02-08 at 7.57.48 PM (1).jpeg"
-                        alt="Songs Tab" />
-                    <p class="phone-label">🎵 Songs Tab</p>
-                    <p class="phone-desc">Complete Track Listing</p>
+                    <img class="phone-screen" src="../raj_music/Screenshot from 2026-08-26 17-32-14.png"
+                        alt="Player & Queue" />
+                    <p class="phone-label">▶️ Player & Up Next Queue</p>
+                    <p class="phone-desc">YouTube Music-style dynamic player</p>
                 </div>
 
                 <div class="phone-mockup fade-in delay-3">
-                    <img class="phone-screen" src="../raj_music/WhatsApp Image 2026-02-08 at 7.57.48 PM (2).jpeg"
-                        alt="Artists Tab" />
-                    <p class="phone-label">👤 Artists Tab</p>
-                    <p class="phone-desc">Artist Discovery</p>
+                    <img class="phone-screen" src="../raj_music/Screenshot from 2026-08-26 17-32-36.png"
+                        alt="Synchronized Karaoke Lyrics" />
+                    <p class="phone-label">🎤 Karaoke Lyrics Sync</p>
+                    <p class="phone-desc">Real-time scrolling line highlighting</p>
                 </div>
 
                 <div class="phone-mockup fade-in delay-4">
-                    <img class="phone-screen" src="../raj_music/WhatsApp Image 2026-02-08 at 7.57.49 PM.jpeg"
-                        alt="Albums Tab" />
-                    <p class="phone-label">💿 Albums Tab</p>
-                    <p class="phone-desc">Album Collection</p>
-                </div>
-
-                <div class="phone-mockup fade-in delay-5">
-                    <img class="phone-screen" src="../raj_music/WhatsApp Image 2026-02-08 at 7.57.49 PM (1).jpeg"
-                        alt="Playlists Tab" />
-                    <p class="phone-label">📋 Playlists Tab</p>
-                    <p class="phone-desc">Custom Playlists</p>
-                </div>
-
-                <div class="phone-mockup fade-in delay-6">
-                    <img class="phone-screen" src="../raj_music/WhatsApp Image 2026-02-08 at 7.57.50 PM.jpeg"
-                        alt="Search" />
-                    <p class="phone-label">🔍 Search</p>
-                    <p class="phone-desc">Find Music Fast</p>
-                </div>
-
-                <div class="phone-mockup fade-in delay-7">
-                    <img class="phone-screen" src="../raj_music/WhatsApp Image 2026-02-08 at 7.57.50 PM (1).jpeg"
-                        alt="Now Playing" />
-                    <p class="phone-label">▶️ Now Playing</p>
-                    <p class="phone-desc">Immersive Playback</p>
-                </div>
-
-                <div class="phone-mockup fade-in delay-8">
-                    <img class="phone-screen" src="../raj_music/WhatsApp Image 2026-02-08 at 7.57.50 PM (2).jpeg"
-                        alt="Settings" />
-                    <p class="phone-label">⚙️ Settings</p>
-                    <p class="phone-desc">App Configuration</p>
-                </div>
-
-                <div class="phone-mockup fade-in delay-9">
-                    <img class="phone-screen" src="../raj_music/WhatsApp Image 2026-02-08 at 7.57.51 PM.jpeg"
-                        alt="Themes" />
-                    <p class="phone-label">🌙 Themes</p>
-                    <p class="phone-desc">Dark & Light Mode</p>
+                    <img class="phone-screen" src="../raj_music/Screenshot from 2026-08-26 17-32-44.png"
+                        alt="Player Controls & Sleep Timer" />
+                    <p class="phone-label">🎛️ Tune Menu & Sleep Timer</p>
+                    <p class="phone-desc">Playback speed, pitch & auto-stop timer</p>
                 </div>
             </div>
         </section>
@@ -653,27 +600,27 @@
 
             <div class="features-grid">
                 <div class="feature-card fade-in delay-2">
-                    <span class="feature-icon">🔄</span>
-                    <h3 class="feature-title">In-App Updates</h3>
-                    <p class="feature-desc">Integrated version tracking via GitHub API to ensure users always have the latest build.</p>
+                    <span class="feature-icon">⏰</span>
+                    <h3 class="feature-title">Sleep Timer</h3>
+                    <p class="feature-desc">Set custom timers (15m, 30m, 60m) to automatically stop music playback and turn off the app.</p>
                 </div>
 
                 <div class="feature-card fade-in delay-3">
-                    <span class="feature-icon">🎯</span>
-                    <h3 class="feature-title">AI Recommendations</h3>
-                    <p class="feature-desc">Smart algorithm refined with AI support to surface songs based on user interaction patterns.</p>
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Tempo & Pitch</h3>
+                    <p class="feature-desc">Control playback speed from 0.25x to 2.0x and adjust pitch transposition in real time.</p>
                 </div>
 
                 <div class="feature-card fade-in delay-4">
-                    <span class="feature-icon">🌙</span>
-                    <h3 class="feature-title">Adaptive Themes</h3>
-                    <p class="feature-desc">Beautiful Neo-Glass design that transitions seamlessly between dark and light modes.</p>
+                    <span class="feature-icon">🎤</span>
+                    <h3 class="feature-title">Karaoke LRC Sync</h3>
+                    <p class="feature-desc">Real-time synchronized scrolling lyrics with smooth line highlighting and pre-fetching.</p>
                 </div>
 
                 <div class="feature-card fade-in delay-5">
-                    <span class="feature-icon">🔊</span>
-                    <h3 class="feature-title">AI Audio Logic</h3>
-                    <p class="feature-desc">Optimized playback engine with AI-tuned buffer management for high-fidelity audio.</p>
+                    <span class="feature-icon">🔄</span>
+                    <h3 class="feature-title">In-App Updates</h3>
+                    <p class="feature-desc">Integrated version tracking via custom config server to ensure users always get the latest update.</p>
                 </div>
             </div>
         </section>
@@ -704,39 +651,6 @@
                 note.style.transform = `translateY(${scrolled * speed * 0.08}px) rotate(${scrolled * 0.015}deg)`;
             });
         });
-    </script>
-    <script>
-        const API_URL = "https://api.counterapi.dev/v1/raj_music_app/downloads";
-        const INITIAL_COUNT = 25;
-
-        // Fetch current count
-        async function fetchCount() {
-            try {
-                const response = await fetch(API_URL);
-                const data = await response.json();
-                document.getElementById('download-count').innerText = data.count + INITIAL_COUNT;
-            } catch (error) {
-                console.error("Error fetching count:", error);
-                fetch('../raj_music/stats.json')
-                    .then(r => r.json())
-                    .then(data => {
-                        document.getElementById('download-count').innerText = data.total_downloads;
-                    });
-            }
-        }
-
-        // Increment count
-        async function incrementDownloadCount() {
-            try {
-                await fetch(`${API_URL}/increment`);
-                const current = parseInt(document.getElementById('download-count').innerText);
-                document.getElementById('download-count').innerText = current + 1;
-            } catch (error) {
-                console.error("Error incrementing:", error);
-            }
-        }
-
-        window.addEventListener('load', fetchCount);
     </script>
 </body>
 
