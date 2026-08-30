@@ -860,32 +860,52 @@
     }
     .exp-bullet-icon { color: var(--blue); margin-top: 0.15rem; flex-shrink: 0; }
 
-    /* Projects Section (Crisp & Solid Visibility) */
-    #projects { padding: 6.5rem 0; }
+    /* Projects Section - Horizontal Track Parallax Zoom from gsap-reveals */
+    #projects {
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .projects-track-wrapper {
+      width: 100%;
+      overflow: hidden;
+      padding: 1rem 0 2rem;
+    }
 
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.75rem;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 2.25rem;
+      width: max-content;
+      padding-left: max(2rem, calc((100vw - 1200px) / 2));
+      padding-right: 8rem;
     }
 
     .project-card {
+      width: 385px;
+      flex-shrink: 0;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 22px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       opacity: 1;
       position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
       transform-style: preserve-3d;
+      will-change: transform;
     }
 
     .project-card:hover {
       border-color: var(--border-bright);
       background: var(--bg-card-hover);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(59, 130, 246, 0.2);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(59, 130, 246, 0.25);
     }
 
     .project-thumb {
@@ -899,7 +919,33 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      will-change: clip-path, transform, filter;
+    }
+
+    /* Liquid Shimmer Sweep from gsap-reveals */
+    .project-thumb::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 50%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(59, 130, 246, 0.25) 50%,
+        rgba(0, 255, 255, 0.4) 75%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(30deg) translateX(-100%);
+      transition: transform 0.85s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .project-card:hover .project-thumb::after {
+      transform: rotate(30deg) translateX(480%);
     }
 
     .project-card:hover .project-thumb img {
@@ -1329,7 +1375,16 @@
     @media (max-width: 992px) {
       .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
       .hero-image-wrap { margin-top: 0; }
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      #projects { min-height: auto; padding: 4rem 0; }
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        gap: 1.5rem;
+      }
+      .project-card { width: 100%; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .contact-grid { grid-template-columns: 1fr; }
@@ -1564,15 +1619,17 @@
       </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section - Horizontal Parallax Track Zoom -->
     <section id="projects">
-      <div class="container">
-        <div class="section-header">
+      <div class="container" style="margin-bottom: 1.5rem;">
+        <div class="section-header" style="margin-bottom: 0;">
           <div class="section-tag">Work Showcase</div>
           <h2 class="section-title">Selected <span>Projects</span></h2>
           <p class="section-desc">Production applications, SaaS platforms, and developer tooling built from the ground up.</p>
         </div>
+      </div>
 
+      <div class="projects-track-wrapper">
         <div class="projects-grid">
           <!-- Project 1: WhatsApp Bot SaaS -->
           <article class="project-card" data-tilt>
@@ -2310,44 +2367,135 @@
         }
       });
 
-      // 9. CLEAN CRISP PROJECT CARD REVEAL
-      gsap.utils.toArray('.project-card').forEach((card, i) => {
-        gsap.from(card, {
-          y: 45,
-          opacity: 0,
-          duration: 0.7,
-          delay: (i % 3) * 0.1,
-          ease: 'power2.out',
+      // 9. AWWWARDS-STYLE HORIZONTAL TRACK PARALLAX ZOOM (from gsap-reveals)
+      const projectsSection = document.querySelector('#projects');
+      const projectsTrack = document.querySelector('.projects-grid');
+
+      if (projectsSection && projectsTrack && window.innerWidth > 992) {
+        // Calculate exact horizontal scroll translation distance
+        const getScrollDistance = () => {
+          return -(projectsTrack.scrollWidth - window.innerWidth + 120);
+        };
+
+        // Pin #projects section and slide track horizontally right-to-left
+        const horizontalTween = gsap.to(projectsTrack, {
+          x: getScrollDistance,
+          ease: 'none',
           scrollTrigger: {
-            trigger: card,
-            start: 'top 92%',
-            toggleActions: 'play none none none'
+            trigger: projectsSection,
+            pin: true,
+            scrub: 1.2,
+            start: 'top top',
+            end: () => `+=${projectsTrack.scrollWidth - window.innerWidth + 600}`,
+            invalidateOnRefresh: true
           }
         });
 
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          
-          gsap.to(card, {
-            rotationY: x * 12,
-            rotationX: -y * 12,
-            transformPerspective: 1000,
-            duration: 0.25,
-            ease: 'power1.out'
-          });
-        });
+        // Image Counter-Parallax Shift & Scale Zoom on each card
+        gsap.utils.toArray('.project-card').forEach((card) => {
+          const img = card.querySelector('.project-thumb img');
+          if (img) {
+            gsap.fromTo(img,
+              { scale: 1.38, xPercent: 25 },
+              {
+                scale: 1.0,
+                xPercent: -25,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: card,
+                  containerAnimation: horizontalTween,
+                  start: 'left right',
+                  end: 'right left',
+                  scrub: true
+                }
+              }
+            );
+          }
 
-        card.addEventListener('mouseleave', () => {
-          gsap.to(card, {
-            rotationY: 0,
-            rotationX: 0,
-            duration: 0.5,
-            ease: 'power2.out'
+          // Spotlight Glow Element
+          let spot = card.querySelector('.card-spotlight');
+          if (!spot) {
+            spot = document.createElement('div');
+            spot.className = 'card-spotlight';
+            spot.style.cssText = 'position:absolute;inset:0;border-radius:inherit;opacity:0;pointer-events:none;z-index:3;transition:opacity 0.3s ease;';
+            card.appendChild(spot);
+          }
+
+          // 3D Perspective Tilt & Cursor Spotlight
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            const px = ((e.clientX - rect.left) / rect.width) * 100;
+            const py = ((e.clientY - rect.top) / rect.height) * 100;
+
+            gsap.to(card, {
+              rotationY: x * 14,
+              rotationX: -y * 14,
+              transformPerspective: 1000,
+              duration: 0.3,
+              ease: 'power1.out',
+              overwrite: 'auto'
+            });
+
+            spot.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(59, 130, 246, 0.28), transparent 60%)`;
+            spot.style.opacity = '1';
+          });
+
+          card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+              rotationY: 0,
+              rotationX: 0,
+              duration: 0.6,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+            spot.style.opacity = '0';
           });
         });
-      });
+      } else {
+        // Fallback 3D tilt for mobile/tablet viewports
+        gsap.utils.toArray('.project-card').forEach((card) => {
+          let spot = card.querySelector('.card-spotlight');
+          if (!spot) {
+            spot = document.createElement('div');
+            spot.className = 'card-spotlight';
+            spot.style.cssText = 'position:absolute;inset:0;border-radius:inherit;opacity:0;pointer-events:none;z-index:3;transition:opacity 0.3s ease;';
+            card.appendChild(spot);
+          }
+
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            const px = ((e.clientX - rect.left) / rect.width) * 100;
+            const py = ((e.clientY - rect.top) / rect.height) * 100;
+
+            gsap.to(card, {
+              rotationY: x * 12,
+              rotationX: -y * 12,
+              transformPerspective: 1000,
+              duration: 0.3,
+              ease: 'power1.out',
+              overwrite: 'auto'
+            });
+
+            spot.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(59, 130, 246, 0.28), transparent 60%)`;
+            spot.style.opacity = '1';
+          });
+
+          card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+              rotationY: 0,
+              rotationX: 0,
+              duration: 0.6,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+            spot.style.opacity = '0';
+          });
+        });
+      }
 
       // 10. CLEAN CRISP SKILLS CARD REVEAL
       gsap.utils.toArray('.skill-card').forEach((card, i) => {
@@ -2403,6 +2551,32 @@
             start: 'top 88%',
             toggleActions: 'play none none none'
           }
+        });
+      });
+
+      // 13. MAGNETIC HOVER ENGINE (Interactive Proximity Cursor Pull)
+      document.querySelectorAll('.btn-primary, .btn-secondary, .hero-tags .tag, .nav-links a').forEach((btn) => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = (e.clientX - (rect.left + rect.width / 2)) * 0.28;
+          const y = (e.clientY - (rect.top + rect.height / 2)) * 0.28;
+          gsap.to(btn, {
+            x: x,
+            y: y,
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          gsap.to(btn, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: 'power3.out',
+            overwrite: 'auto'
+          });
         });
       });
 
