@@ -1531,7 +1531,7 @@
                 <p class="exp-role">Full-Stack Developer (Frontend + Backend)</p>
               </div>
             </div>
-            <span class="exp-duration">Oct 2024 – Present</span>
+            <span class="exp-duration" id="exp-duration-badge">Oct 2024 – Present</span>
           </div>
 
           <div class="exp-grid">
@@ -2024,6 +2024,39 @@
 
   <!-- GSAP Animation Engine -->
   <script>
+    // 0. Live Experience Auto-Calculator (Joining Date: Oct 2024)
+    function initDynamicExperience() {
+      const startDate = new Date(2024, 9, 1); // 1st October 2024
+      const today = new Date();
+
+      let diffYears = today.getFullYear() - startDate.getFullYear();
+      let diffMonths = today.getMonth() - startDate.getMonth();
+      let diffDays = today.getDate() - startDate.getDate();
+
+      if (diffDays < 0) diffMonths--;
+      if (diffMonths < 0) { diffYears--; diffMonths += 12; }
+
+      const totalMonths = (diffYears * 12) + diffMonths;
+
+      const yearStr = diffYears > 0 ? `${diffYears} Yr${diffYears > 1 ? 's' : ''}` : '';
+      const monthStr = diffMonths > 0 ? `${diffMonths} Mo${diffMonths > 1 ? 's' : ''}` : '';
+      const formattedExp = [yearStr, monthStr].filter(Boolean).join(' ') || `${totalMonths} Mos`;
+
+      // 1. Set data-count and initial text for Stat Counter (used by GSAP ScrollTrigger)
+      const statEl = document.getElementById('exp-stat');
+      if (statEl) {
+        statEl.setAttribute('data-count', totalMonths);
+        statEl.innerText = totalMonths + '+';
+      }
+
+      // 2. Set duration badge on Experience card
+      const badgeEl = document.getElementById('exp-duration-badge');
+      if (badgeEl) {
+        badgeEl.innerText = `Oct 2024 – Present (${formattedExp})`;
+      }
+    }
+    initDynamicExperience();
+
     document.addEventListener('DOMContentLoaded', () => {
 
       // 1. Terminal Preloader Sequence (Comfortable Speed & Pauses)
@@ -2377,26 +2410,6 @@
       ScrollTrigger.refresh();
 
     });
-
-    // Dynamic Experience Calculation
-    function updateExperience() {
-      const startDate = new Date(2024, 9, 23);
-      const today = new Date();
-      let diffYears = today.getFullYear() - startDate.getFullYear();
-      let diffMonths = today.getMonth() - startDate.getMonth();
-      let diffDays = today.getDate() - startDate.getDate();
-
-      if (diffDays < 0) diffMonths--;
-      if (diffMonths < 0) { diffYears--; diffMonths += 12; }
-
-      const yearStr = diffYears > 0 ? `${diffYears} Yr${diffYears > 1 ? 's' : ''}` : '';
-      const monthStr = diffMonths > 0 ? `${diffMonths} Mo${diffMonths > 1 ? 's' : ''}` : '';
-      const fullExp = `${yearStr} ${monthStr}`.trim() || '10 Mos';
-
-      const statEl = document.getElementById('exp-stat');
-      if (statEl) statEl.innerText = fullExp;
-    }
-    updateExperience();
 
     // Lightbox Functionality
     function initLightbox() {
