@@ -1,6 +1,6 @@
 {
-  "versionCode": 28,
-  "versionName": "0.6.0",
+  "versionCode": 29,
+  "versionName": "0.6.1",
   "updateUrl": "https://iamraj.me/projects/raj-music.html",
-  "releaseNotes": "Added Sleep Timer, Playback Speed & Pitch Control, Karaoke LRC Auto-scrolling, and responsive player menu UI."
+  "releaseNotes": "Unified Offline & Downloaded music tab, fixed song downloading from player, lyrics toggle button fix, and performance optimizations."
 }
