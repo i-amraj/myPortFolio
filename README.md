@@ -17,7 +17,7 @@ A modern, responsive personal engineering portfolio designed to showcase product
   - *OptiCompress PRO* — Client-side privacy batch compressor
   - *Dual-Engine Lead Extractor* — Automated Playwright lead miner
   - *Raj Music* — Android Kotlin media engine
-  - *Health Advisor AI* — Regional hackathon award winner
+  - *Health Advisor AI* — Codex Matrix award winner (3rd Prize — Health Advisor AI)
 - **Performance Optimized:** Fast page load with optimized asset delivery and zero bloated dependencies.
 - **Embedded Interactive Resume:** Clean view of professional career history, technical stack, and achievements.
 
