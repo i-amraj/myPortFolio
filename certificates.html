@@ -6,7 +6,7 @@
   
   <!-- SEO Meta Tags -->
   <title>Verified Certifications & Credentials | Raj Soni — AI & Full-Stack Engineer</title>
-  <meta name="description" content="Explore 30+ verified professional certifications in AI, Machine Learning, Python, Database Systems, and Cloud Engineering earned by Raj Soni from IIT Kanpur and top institutions." />
+  <meta name="description" content="Explore 26 verified professional certifications in AI, Machine Learning, Python, Database Systems, and Cloud Engineering earned by Raj Soni from IIT Kanpur and top institutions." />
   <meta name="keywords" content="Raj Soni Certificates, IIT Kanpur Certification, Python Certificate, AI Engineering Certification, Azure Fundamentals, Software Engineering Credentials" />
   <meta name="author" content="Raj Soni" />
   <meta name="robots" content="index, follow" />
@@ -513,7 +513,7 @@
     <div class="hero-badge">
       <span>✓</span> VERIFIED CREDENTIALS & CERTIFICATIONS
     </div>
-    <h1 class="hero-title">30+ Professional Certifications</h1>
+    <h1 class="hero-title">26 Professional Certifications</h1>
     <p class="hero-desc">
       Official certifications in Artificial Intelligence, Python Programming, Database Architecture, and Software Engineering from IIT Kanpur & top global tech institutions.
     </p>
@@ -665,7 +665,7 @@
               canvas.height = img.height;
               ctx.drawImage(img, 0, 0);
             };
-            img.src = cert.b64;
+            img.src = cert.src || cert.b64;
           }
 
           // Card Click Event -> Open Modal
@@ -721,7 +721,7 @@
           setTimeout(() => modal.classList.add('active'), 10);
           document.body.style.overflow = 'hidden';
         };
-        activeImage.src = cert.b64;
+        activeImage.src = cert.src || cert.b64;
       }
 
       function renderModalCanvas() {
