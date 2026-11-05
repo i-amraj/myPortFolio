@@ -6,7 +6,7 @@
     <!-- SEO -->
     <title>Resume — Raj Soni | Full Stack Developer, Kanpur</title>
     <meta name="title" content="Resume — Raj Soni | Full Stack Developer" />
-    <meta name="description" content="Official resume of Raj Soni — Full Stack Developer at Fireflies Infotech, Kanpur. Expert in Laravel, PHP, Python, AI integrations, and SaaS platforms. Hackathon 3rd Prize Winner." />
+    <meta name="description" content="Official resume of Raj Soni — Full Stack Developer at Fireflies Infotech, Kanpur. Expert in Laravel, PHP, Python, AI integrations, and SaaS platforms. 3rd Prize at Codex Matrix." />
     <meta name="keywords" content="Raj Soni Resume, Full Stack Developer Resume Kanpur, Laravel Developer, PHP Developer, Python Developer, AI Developer India, Raj Soni CV" />
     <meta name="author" content="Raj Soni" />
     <meta name="robots" content="index, follow" />
@@ -21,6 +21,7 @@
     <meta name="twitter:image" content="https://iamraj.me/mypic/WhatsApp%20Image%202026-02-08%20at%208.15.23%20PM.jpeg" />
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', Arial, sans-serif; color: #1a1a1a; background: #f0f2f5; font-size: 14px; line-height: 1.6; }
@@ -40,7 +41,7 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.08);
         }
 
-        /* ── Header ── */
+        /* Header */
         .header { border-bottom: 2px solid #1a1a1a; padding-bottom: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start; }
         .header-left h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; color: #000; }
         .header-left .role { font-size: 14px; color: #444; font-weight: 500; margin: 4px 0 10px; }
@@ -50,7 +51,7 @@
         .header-qr img { width: 88px; height: 88px; border: 1px solid #e5e7eb; border-radius: 6px; padding: 4px; }
         .header-qr p { font-size: 9px; text-align: center; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; font-weight: 600; }
 
-        /* ── Section ── */
+        /* Section */
         section { margin-bottom: 20px; }
         .section-title {
             font-size: 10px;
@@ -64,10 +65,10 @@
             display: inline-block;
         }
 
-        /* ── Summary ── */
+        /* Summary */
         .summary p { color: #374151; line-height: 1.7; font-size: 13.5px; }
 
-        /* ── Experience ── */
+        /* Experience */
         .exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
         .exp-header h3 { font-size: 15px; font-weight: 700; color: #000; }
         .exp-header .date { font-size: 12px; color: #6b7280; font-weight: 500; white-space: nowrap; }
@@ -75,7 +76,7 @@
         .exp-bullets { list-style: disc; padding-left: 18px; }
         .exp-bullets li { color: #374151; font-size: 13px; margin-bottom: 5px; }
 
-        /* ── Projects ── */
+        /* Projects */
         .project-item { margin-bottom: 12px; }
         .project-item h3 { font-size: 13.5px; font-weight: 700; color: #111; margin-bottom: 2px; }
         .project-item .tech { font-size: 11px; color: #6b7280; font-style: italic; margin-bottom: 4px; }
@@ -84,28 +85,33 @@
         .other-projects { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; border-top: 1px solid #f3f4f6; padding-top: 12px; margin-top: 12px; }
         .other-projects p { font-size: 12px; color: #4b5563; }
 
-        /* ── Two-column layout ── */
+        /* Two-column layout */
         .two-col { display: grid; grid-template-columns: 1fr 300px; gap: 32px; }
 
-        /* ── Skills ── */
+        /* Skills */
         .skill-group { margin-bottom: 12px; }
         .skill-group h4 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #6b7280; margin-bottom: 6px; }
         .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
         .skill-tag { font-size: 11.5px; background: #f3f4f6; border: 1px solid #e5e7eb; color: #1f2937; padding: 3px 8px; border-radius: 3px; font-weight: 500; }
 
-        /* ── Education ── */
+        /* Education */
         .edu-item { margin-bottom: 10px; }
         .edu-item h3 { font-size: 13px; font-weight: 700; color: #111; }
         .edu-item p { font-size: 12px; color: #6b7280; }
         .edu-item .year { font-size: 11px; color: #1a56db; font-weight: 600; }
 
-        /* ── Achievements ── */
+        /* Achievements */
         .achievement-item { display: flex; gap: 10px; margin-bottom: 8px; }
         .achievement-item .icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
         .achievement-item div h4 { font-size: 13px; font-weight: 700; color: #111; }
         .achievement-item div p { font-size: 12px; color: #4b5563; }
 
-        /* ── Print Button ── */
+        /* Certifications */
+        .cert-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; }
+        .cert-list li { font-size: 12.5px; color: #374151; }
+        .cert-list li::before { content: "\2022  "; color: #1a56db; font-weight: 700; }
+
+        /* Print Button */
         .no-print { position: fixed; top: 16px; right: 16px; z-index: 100; }
         .print-btn { background: #1a1a1a; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: background 0.2s; }
         .print-btn:hover { background: #333; }
@@ -114,13 +120,13 @@
 <body>
 
     <div class="no-print" style="position: fixed; top: 16px; right: 16px; z-index: 100; display: flex; gap: 10px;">
-        <a class="print-btn" href="Raj_Soni_Resume.pdf" target="_blank" download="Raj_Soni_Resume.pdf" style="text-decoration:none;">📄 Download ATS Resume (PDF)</a>
-        <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+        <button class="print-btn" type="button" onclick="downloadResumePDF()">📄 Download Resume (PDF)</button>
+        <button class="print-btn" onclick="window.print()">🖨 Print</button>
     </div>
 
-    <div class="resume-page">
+    <div class="resume-page" id="resume-page">
 
-        <!-- ── HEADER ── -->
+        <!-- HEADER -->
         <header class="header">
             <div class="header-left">
                 <h1>Raj Soni</h1>
@@ -141,16 +147,16 @@
             </div>
         </header>
 
-        <!-- ── SUMMARY ── -->
+        <!-- SUMMARY -->
         <section class="summary">
             <div class="section-title">Professional Summary</div>
             <p>
-                Full Stack Developer with <span id="resume-exp">...</span> of professional experience building SaaS platforms, AI-powered automation tools, and real-world business management systems. Proficient in PHP, Laravel, Python, and JavaScript with hands-on experience in multi-tenant architecture, REST API integrations, and scalable backend systems. Experienced in integrating AI APIs (Gemini, Claude) into production applications. Awarded 3rd Prize at a regional Hackathon for an AI-powered healthcare assistant.
+                Full Stack Developer with <span id="resume-exp-years">...</span> of professional experience building SaaS platforms, AI-powered automation tools, and real-world business management systems. Proficient in PHP, Laravel, Python, and JavaScript with hands-on experience in multi-tenant architecture, REST API integrations, and scalable backend systems. Experienced in integrating AI APIs (Gemini, Claude) into production applications. Currently focused on building AI agents. Awarded 3rd Prize at Codex Matrix for Health Advisor AI, an AI-powered healthcare assistant.
             </p>
         </section>
 
         <div class="two-col">
-            <!-- ── LEFT COLUMN ── -->
+            <!-- LEFT COLUMN -->
             <div>
 
                 <!-- EXPERIENCE -->
@@ -162,12 +168,12 @@
                     </div>
                     <p class="exp-role">Full Stack Developer</p>
                     <ul class="exp-bullets">
-                        <li>Developed end-to-end enterprise management systems for Restaurants, Gyms, and Co-working Libraries using Laravel and MySQL.</li>
-                        <li>Built a multi-tenant WhatsApp SaaS platform supporting 100+ business users with isolated data architecture, automated invoicing, and real-time reporting.</li>
+                        <li>Developed RestaurantOS, an end-to-end restaurant management system using Laravel and MySQL with POS billing and real-time order tracking.</li>
+                        <li>Optimized MySQL queries and database indexing to improve application performance.</li>
+                        <li>Built Body Bannao, a multi-tenant Gym SaaS platform with real-time WebSocket messaging and automated billing.</li>
+                        <li>Implemented Gemini &amp; Claude AI support bots to improve customer support response times.</li>
                         <li>Integrated biometric hardware APIs with web backend for automated seat allocation and attendance tracking.</li>
-                        <li>Implemented AI chatbot for gym client support using Gemini AI API with an integrated ticketing system for query management.</li>
-                        <li>Used AI-assisted development tools (Claude, Gemini) to improve development efficiency and accelerate prototyping cycles.</li>
-                        <li>Built an uptime monitoring tool using Python Flask and APScheduler with real-time latency graphs and automated email alerts.</li>
+                        <li>Built an uptime monitoring tool using Python Flask with cron alerts and real-time latency tracking.</li>
                     </ul>
                 </section>
 
@@ -194,16 +200,14 @@
                     </div>
 
                     <div class="other-projects">
-                        <p>• <strong>Health Advisor AI</strong> — Hackathon 3rd Prize (Gemini AI)</p>
-                        <p>• <strong>Website Ping Checker</strong> — Uptime Monitoring (Flask)</p>
-                        <p>• <strong>Raj Music App</strong> — Flutter Android App (25+ users)</p>
-                        <p>• <strong>Invoice Generator</strong> — GST Utility with GitHub Sync</p>
+                        <p>• <strong>Health Advisor AI</strong> — 3rd Prize at Codex Matrix (PHP · Gemini API)</p>
+                        <p>• <strong>Body Bannao WhatsApp Bot</strong> — Automated WhatsApp bot for gym businesses: member support, billing reminders, and ticket management</p>
                     </div>
                 </section>
 
             </div>
 
-            <!-- ── RIGHT COLUMN ── -->
+            <!-- RIGHT COLUMN -->
             <div>
 
                 <!-- SKILLS -->
@@ -222,7 +226,7 @@
                     </div>
 
                     <div class="skill-group">
-                        <h4>Frameworks & Libraries</h4>
+                        <h4>Frameworks &amp; Libraries</h4>
                         <div class="skill-tags">
                             <span class="skill-tag">Laravel</span>
                             <span class="skill-tag">Flask</span>
@@ -234,7 +238,7 @@
                     </div>
 
                     <div class="skill-group">
-                        <h4>AI & Integrations</h4>
+                        <h4>AI &amp; Integrations</h4>
                         <div class="skill-tags">
                             <span class="skill-tag">Gemini API</span>
                             <span class="skill-tag">Claude API</span>
@@ -245,7 +249,7 @@
                     </div>
 
                     <div class="skill-group">
-                        <h4>Databases & Tools</h4>
+                        <h4>Databases &amp; Tools</h4>
                         <div class="skill-tags">
                             <span class="skill-tag">MySQL</span>
                             <span class="skill-tag">SQLite</span>
@@ -262,11 +266,11 @@
                     <div class="edu-item">
                         <h3>Master of Computer Applications (MCA)</h3>
                         <p>Jagran Institute of Management, Kanpur</p>
-                        <p class="year">2025 – 2027 (Pursuing)</p>
+                        <p class="year">Expected 2027</p>
                     </div>
                     <div class="edu-item">
                         <h3>Bachelor of Arts (BA)</h3>
-                        <p>Completed</p>
+                        <p>2021 – 2024</p>
                     </div>
                 </section>
 
@@ -276,21 +280,36 @@
                     <div class="achievement-item">
                         <div class="icon">🏆</div>
                         <div>
-                            <h4>Hackathon — 3rd Prize</h4>
-                            <p>Regional hackathon winner for Health Advisor AI, an intelligent health assistant built with Gemini AI API.</p>
+                            <h4>3rd Prize at Codex Matrix</h4>
+                            <p>Awarded 3rd Prize at Codex Matrix for Health Advisor AI, an intelligent health assistant built with PHP and the Gemini API.</p>
                         </div>
                     </div>
                     <div class="achievement-item">
-                        <div class="icon">🚀</div>
+                        <div class="icon">🥉</div>
                         <div>
-                            <h4>Live Production Systems</h4>
-                            <p>6+ real-world projects deployed and actively used by clients in production environments.</p>
+                            <h4>3rd Position — Code Quest, Mind &amp; Code Fest 2026</h4>
+                            <p>Secured 3rd Position at Code Quest, Mind &amp; Code Fest 2026.</p>
                         </div>
                     </div>
                 </section>
 
             </div>
         </div>
+
+        <!-- CERTIFICATIONS -->
+        <section>
+            <div class="section-title">Certifications</div>
+            <ul class="cert-list">
+                <li><strong>Advance Excel with Data Visualization</strong> — E&amp;ICT Academy, IIT Kanpur</li>
+                <li><strong>Claude 101</strong> — Anthropic</li>
+                <li><strong>AI Fluency: Framework &amp; Foundations</strong> — Anthropic</li>
+                <li><strong>AI and Cybersecurity Awareness</strong> — TCS iON</li>
+                <li><strong>Generative AI Essentials</strong> — TCS iON</li>
+                <li><strong>Getting Started with Gemini</strong> — Great Learning Academy</li>
+                <li><strong>Infosys Springboard</strong> — Agile Scrum in Practice · Angular · Basics of Python · Database Management System · Software Engineering and Agile Software Development · Time Management</li>
+                <li><strong>LinkedIn Learning</strong> — Agile Software Development &amp; Clean Coding Practices · Gemini in Google Sheets · Microsoft Azure Essentials</li>
+            </ul>
+        </section>
 
         <footer style="margin-top: 24px; padding-top: 12px; border-top: 1px solid #e5e7eb; text-align: center;">
             <p style="font-size: 10px; color: #9ca3af; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;">iamraj.me · github.com/i-amraj · iamrajsoni1@gmail.com</p>
@@ -299,24 +318,41 @@
     </div>
 
     <script>
+        // Experience is computed live from the job start date so the resume is
+        // always current on the day it is viewed or downloaded.
         function updateResumeExperience() {
-            const startDate = new Date(2024, 9, 1);
+            const startDate = new Date(2024, 9, 1); // 1 Oct 2024
             const today = new Date();
             let diffYears = today.getFullYear() - startDate.getFullYear();
             let diffMonths = today.getMonth() - startDate.getMonth();
             if (today.getDate() < startDate.getDate()) diffMonths--;
             if (diffMonths < 0) { diffYears--; diffMonths += 12; }
-            const yearStr = diffYears > 0 ? `${diffYears} year${diffYears > 1 ? 's' : ''}` : "";
-            const monthStr = diffMonths > 0 ? `${diffMonths} month${diffMonths > 1 ? 's' : ''}` : "";
-            const full = [yearStr, monthStr].filter(Boolean).join(" and ") || "less than a month";
-            const short = [
-                diffYears > 0 ? `${diffYears} Yr` : "",
-                diffMonths > 0 ? `${diffMonths} Mo` : ""
-            ].filter(Boolean).join(" ") || "New";
-            if (document.getElementById('resume-exp')) document.getElementById('resume-exp').innerText = full;
-            if (document.getElementById('resume-duration')) document.getElementById('resume-duration').innerText = short;
+            const yearStr = diffYears > 0 ? diffYears + ' year' + (diffYears > 1 ? 's' : '') : '';
+            const monthStr = diffMonths > 0 ? diffMonths + ' month' + (diffMonths > 1 ? 's' : '') : '';
+            const full = [yearStr, monthStr].filter(Boolean).join(' and ') || 'less than a month';
+            const yearsEl = document.getElementById('resume-exp-years');
+            if (yearsEl) yearsEl.innerText = diffYears > 0 ? diffYears + '+ years' : 'less than a year';
+            const durationEl = document.getElementById('resume-duration');
+            if (durationEl) durationEl.innerText = full;
         }
         updateResumeExperience();
+
+        // Generate a fresh PDF from the live resume element at click time,
+        // so the download always contains the current, JS-computed experience.
+        function downloadResumePDF() {
+            const element = document.getElementById('resume-page');
+            if (!element) { window.print(); return; }
+            if (typeof html2pdf === 'undefined') { window.print(); return; }
+            const opt = {
+                margin: [8, 8, 8, 8],
+                filename: 'Raj_Soni_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: ['css', 'legacy'] }
+            };
+            html2pdf().set(opt).from(element).save().catch(function () { window.print(); });
+        }
     </script>
 </body>
 </html>
